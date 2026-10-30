@@ -183,6 +183,12 @@
   .shift .from { color: var(--slate); }
   .shift .to { border-color: var(--line); background: var(--line-soft); }
   .shift .arrow { border: 0; display: grid; place-items: center; color: var(--line); font-size: 22px; padding: 0; }
+  ol.roadmap { list-style: none; margin: 0 0 22px; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+  ol.roadmap li { border: 1px dashed var(--plan); border-radius: 6px; padding: 12px 14px; font-size: 14px; line-height: 1.6; display: flex; flex-direction: column; gap: 6px; }
+  ol.roadmap li.done { border: 1px solid var(--exp); background: color-mix(in srgb, var(--exp) 7%, var(--sheet)); }
+  ol.roadmap b { font-size: 15px; }
+  ol.roadmap small { color: var(--slate); font-size: 12px; display: flex; flex-wrap: wrap; align-items: center; gap: 5px; margin-top: auto; }
+  @media (max-width: 900px) { ol.roadmap { grid-template-columns: 1fr; } }
   .layers { display: grid; gap: 8px; }
   .layer { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: 18px; align-items: start; padding: 12px 16px; border: 1px solid var(--rule); border-left: 4px solid var(--line); border-radius: 6px; }
   .layer.ops { border-left-color: var(--slate); }
@@ -401,7 +407,7 @@
         <dt>クラウド / IaC</dt>
         <dd><ul class="tags">
           <li><span class="mark exp"></span>GCP（レポート集計基盤）</li>
-          <li><span class="mark exp"></span>Google Workspace（Drive 移行）</li>
+          <li><span class="mark exp"></span>Google Workspace（Drive 移行・GAS）</li>
           <li>ChromeOS</li>
           <li><span class="mark exp"></span>Azure（AVS / IaaS）</li>
           <li><span class="mark exp"></span>Microsoft 365 / Entra ID</li>
@@ -589,7 +595,7 @@
                 <li>役割ごとの権限分離と、全操作の監査ログを持つ管理システム（公開リポジトリ）</li>
               </ul></dd>
               <dt>設計方針</dt>
-              <dd class="plan">AD の IAM 標準設計・OU 構造を基準に、GAS / Python で SaaS・クラウド間のアカウント状態を同期・監査し、製品の境界で遮断が遅れる隙間をなくす。</dd>
+              <dd class="plan">Entra ID を起点に、Google Workspace へは SAML で SSO、SCIM でアカウントの作成・停止を自動化する。SCIM に対応しない SaaS は GAS / Python でアカウント状態を突き合わせて監査し、製品の境界で遮断が遅れる隙間をなくす。</dd>
             </dl>
             <p class="stack">Active Directory・GPO・ManageEngine・Zscaler・Google Workspace・GAS・Python</p>
           </div>
@@ -667,28 +673,46 @@
 
       <div class="arch" aria-labelledby="arch-h">
         <div class="arch-head">
-          <h3 id="arch-h">組織のインフラで目標とする構成</h3>
+          <h3 id="arch-h">Microsoft 環境から Google Workspace 中心の構成へ</h3>
           <ul class="legend" aria-label="凡例">
             <li><span class="mark exp" aria-hidden="true"></span>職務経歴で担当</li>
             <li><span class="mark work" aria-hidden="true"></span>公開リポジトリで実装</li>
+            <li><span class="mark plan" aria-hidden="true"></span>計画</li>
           </ul>
         </div>
-        <div class="shift">
-          <div class="from"><b>現状によくある構成</b>Windows端末・オンプレミスのサーバー・製品ごとのSaaSを積み上げ、TCOと運用負荷が増え続ける</div>
-          <div class="arrow" aria-hidden="true">→</div>
-          <div class="to"><b>目標</b>ID・端末・アプリ・データをクラウドで統合し、構成をコードで管理する</div>
-        </div>
+        <ol class="roadmap" aria-label="Microsoft 環境から Google Workspace への移行段階">
+          <li class="done">
+            <b>段階0　ID をクラウドへ</b>
+            <span>オンプレ AD から Entra ID へ。SSO・多要素認証・Hybrid Entra ID Join、SAML で SaaS 連携</span>
+            <small><span class="mark exp" aria-hidden="true"></span>現職で実施済み</small>
+          </li>
+          <li>
+            <b>段階1　共存</b>
+            <span>Entra ID を ID 基盤のまま、Google Workspace へ SAML で SSO、SCIM でアカウントを自動作成・削除。Drive・Meet を一部の部署で先行利用</span>
+            <small><span class="mark plan" aria-hidden="true"></span>計画　<span class="mark exp" aria-hidden="true"></span>Drive 移行は前職で経験</small>
+          </li>
+          <li>
+            <b>段階2　業務を移す</b>
+            <span>Excel・ファイル共有で回している業務を、Sheets・GAS・AppSheet の仕組みに置き換える。Chrome Enterprise で端末とブラウザを管理</span>
+            <small><span class="mark plan" aria-hidden="true"></span>計画　<span class="mark exp" aria-hidden="true"></span><span class="mark work" aria-hidden="true"></span>GAS での業務システム開発</small>
+          </li>
+          <li>
+            <b>段階3　統合</b>
+            <span>利用実績とコストを5つの指標で比べ、ID 基盤とライセンスをどちらに寄せるかを判断。ChromeOS 端末への切り替えと Microsoft 365 ライセンスの縮小で TCO を下げる</span>
+            <small><span class="mark plan" aria-hidden="true"></span>計画</small>
+          </li>
+        </ol>
         <div class="layers">
           <div class="layer"><h4>アイデンティティ<small>境界の中心</small></h4>
-            <ul class="tags"><li>Cloud Identity / Google Workspace</li><li><span class="mark exp"></span>Entra ID・SAML SSO・多要素認証</li><li>パスキー</li><li><span class="mark exp"></span>AD 特権ID管理・人事連携</li><li><span class="mark exp"></span>Zscaler 二要素認証</li></ul></div>
+            <ul class="tags"><li><span class="mark exp"></span>Entra ID・SAML SSO・多要素認証</li><li><span class="mark plan"></span>Entra ID → Google Workspace の SAML・SCIM 連携</li><li>Cloud Identity / Google Workspace</li><li>パスキー</li><li><span class="mark exp"></span>AD 特権ID管理・人事連携</li><li><span class="mark exp"></span>Zscaler 二要素認証</li></ul></div>
           <div class="layer"><h4>エンドポイント<small>端末</small></h4>
-            <ul class="tags"><li>ChromeOS</li><li>端末の状態確認（Endpoint Verification）</li><li><span class="mark exp"></span>MECM / SCCM</li><li><span class="mark work"></span>イメージ＋Ansible による標準化</li></ul></div>
+            <ul class="tags"><li><span class="mark plan"></span>Chrome Enterprise によるブラウザ管理</li><li>ChromeOS</li><li>端末の状態確認（Endpoint Verification）</li><li><span class="mark exp"></span>MECM / SCCM</li><li><span class="mark work"></span>イメージ＋Ansible による標準化</li></ul></div>
           <div class="layer"><h4>アクセス<small>場所で信用しない</small></h4>
             <ul class="tags"><li>Identity-Aware Proxy（BeyondCorp）</li><li><span class="mark exp"></span>SASE</li><li><span class="mark exp"></span>Palo Alto・Zscaler・Umbrella</li><li><span class="mark work"></span>管理経路の限定・外向き通信の遮断</li></ul></div>
           <div class="layer"><h4>ワークロード<small>アプリ・サーバー</small></h4>
             <ul class="tags"><li>Cloud Run</li><li><span class="mark exp"></span>Azure VMware Solution・ESXi</li><li><span class="mark work"></span>Docker・Kubernetes / Helm</li></ul></div>
           <div class="layer"><h4>データ<small>最後に守るもの</small></h4>
-            <ul class="tags"><li><span class="mark exp"></span>Google Drive への移行</li><li><span class="mark exp"></span>PCI DSS のデータ保護</li><li><span class="mark work"></span>テナント分離・データを社外に出さない</li></ul></div>
+            <ul class="tags"><li><span class="mark exp"></span>ファイルサーバーから Google Drive への移行</li><li><span class="mark plan"></span>Sheets・GAS・AppSheet への業務移行</li><li><span class="mark exp"></span>PCI DSS のデータ保護</li><li><span class="mark work"></span>テナント分離・データを社外に出さない</li></ul></div>
           <div class="layer ops"><h4>運用・統制<small>全層を横断</small></h4>
             <ul class="tags"><li>Infrastructure as Code</li><li><span class="mark exp"></span>脆弱性診断・レポートの自動化</li><li><span class="mark exp"></span>セキュリティ監視機器の運用</li><li><span class="mark work"></span>CI による自動テスト・監査ログ</li></ul></div>
         </div>
@@ -698,6 +722,7 @@
         <div>
           <h3>アーキテクチャ方針</h3>
           <p>Windows・オンプレミス・高額SaaSを積み上げた構造から、GCP・Google Workspace・ChromeOS を軸にしたフルクラウド＆ゼロトラストの構成へ統合する。</p>
+          <p>Microsoft 環境が残る組織では、整えた Entra ID をそのまま生かし、Google Workspace と共存させてから段階的に移す。一度に置き換えず、業務を止めないことを優先する。</p>
           <p>インフラの構成をコードで管理し（IaC）、開発と運用を同じパイプラインでつなぐ（DevOps）。変更はレビューと自動テストを通してから本番に反映し、同じ手順で何度でも再現できる状態を保つ。</p>
           <p>2016年のクラウド比較、2022年の Azure 展開提案、2023年の AVS 化と Google Drive 移行、現職での Entra ID・SASE への移行と進めてきたクラウド化を、端末とアプリまで含めた統合に広げる。</p>
         </div>
