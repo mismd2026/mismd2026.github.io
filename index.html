@@ -153,6 +153,26 @@
   .axis-map li { grid-template-columns: 7.5rem minmax(0, 1fr) !important; }
   .stack { font-size: 14px; color: var(--slate); margin: 12px 0 0 22px; }
 
+  .process { background: var(--sheet); border: 1px solid var(--rule); border-radius: 10px; padding: 24px; margin: 0 0 40px; }
+  .process h3 { font-size: 19px; margin: 0 0 4px; }
+  .process-lead { color: var(--slate); font-size: 15px; margin: 0 0 18px; max-width: 46rem; }
+  ol.pipeline { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0; counter-reset: st; }
+  ol.pipeline li { counter-increment: st; position: relative; padding: 12px 14px 12px 14px; border-top: 3px solid var(--line); font-size: 14px; line-height: 1.6; }
+  ol.pipeline li + li { border-left: 1px solid var(--rule); }
+  ol.pipeline b { display: block; font-size: 15px; margin-bottom: 4px; }
+  ol.pipeline b::before { content: counter(st) " "; color: var(--line); }
+  ol.pipeline span { display: block; margin-bottom: 6px; }
+  ol.pipeline small { display: block; color: var(--slate); font-size: 12px; }
+  @media (max-width: 900px) { ol.pipeline { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 12px; } ol.pipeline li + li { border-left: 0; } }
+  @media (max-width: 560px) { ol.pipeline { grid-template-columns: 1fr; } .process { padding: 18px 14px; } }
+
+  .next { margin: 0 0 40px; }
+  .next h3 { font-size: 19px; margin: 0 0 14px; }
+  dl.next-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 40px; margin: 0; }
+  dl.next-list dt { font-weight: 700; margin-bottom: 4px; padding-left: 12px; border-left: 3px solid var(--line); }
+  dl.next-list dd { margin: 0; padding-left: 15px; max-width: 32rem; }
+  @media (max-width: 900px) { dl.next-list { grid-template-columns: 1fr; } }
+
   /* 6. Vision */
   .arch { background: var(--sheet); border: 1px solid var(--rule); border-radius: 10px; padding: 26px; margin: 0 0 40px; }
   .arch-head { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; flex-wrap: wrap; margin-bottom: 18px; }
@@ -285,6 +305,7 @@
           <p>最大約20名規模のプロジェクトでPM / PLを担当し、米国本社のチームとは英語で調整。</p>
           <h3>評価・設計軸</h3>
           <p>「信頼性・可用性」「性能・拡張性」「セキュリティ」「運用・保守性」「コスト」の5つの指標に基づいて構造を設計する。既存製品の境界にある仕様の隙間は自作コードやIaCで埋め、GCPへの統合を見据えた構成を組む。</p>
+          <p>今後は開発を仕事の中心に置き、企画から実装・自動テスト・運用までをコードで一貫して提供することを目指している。</p>
         </div>
 
         <div class="axis">
@@ -413,7 +434,7 @@
           <li><span class="mark exp"></span>PCI DSS 監査対応</li>
           <li>情報処理安全確保支援士領域の知見</li>
         </ul></dd>
-        <dt>開発言語 / DevOps</dt>
+        <dt>開発 / DevOps</dt>
         <dd><ul class="tags">
           <li><span class="mark exp"></span><span class="mark work"></span>Python</li>
           <li><span class="mark exp"></span><span class="mark work"></span>PowerShell</li>
@@ -423,7 +444,10 @@
           <li><span class="mark exp"></span>PHP</li>
           <li><span class="mark exp"></span><span class="mark work"></span>SQL（MySQL・PostgreSQL）</li>
           <li><span class="mark work"></span>TypeScript / React</li>
-          <li><span class="mark work"></span>CI / 自動テスト（pytest・ansible-lint）</li>
+          <li><span class="mark work"></span>FastAPI・SQLAlchemy</li>
+          <li><span class="mark work"></span>Git / GitHub</li>
+          <li><span class="mark work"></span>CI / 自動テスト（GitHub Actions・pytest・ansible-lint・ruff）</li>
+          <li><span class="mark work"></span>AIコーディング支援を使った開発</li>
         </ul></dd>
       </dl>
     </section>
@@ -433,6 +457,19 @@
       <p class="chapter latin">5　Works &amp; Gap Bridging</p>
       <h2 id="works-h">実績・作品紹介</h2>
       <p class="lead">既存製品の境界に残る「仕様の隙間」を、どの構成で、何で埋めたか。各事例の右側に、根拠となる職務経歴と公開リポジトリを並べています。</p>
+
+      <div class="process" aria-labelledby="proc-h">
+        <h3 id="proc-h">開発の進め方</h3>
+        <p class="process-lead">キッティング・資産管理、コールセンター、動画制作、貸出管理の4つのリポジトリは、同じ流れで作っています。生成AIを開発環境に組み込み、企画から公開までを短いサイクルで回します。</p>
+        <ol class="pipeline">
+          <li><b>企画</b><span>業務の課題を、5つの指標で要件に落とす</span><small>各 README の「課題」「設計の判断」</small></li>
+          <li><b>設計</b><span>構成図と判断理由を、コードと同じ場所に残す</span><small>Mermaid の構成図・状態遷移図</small></li>
+          <li><b>実装</b><span>Python・TypeScript・GAS で機能を作る。AIのコーディング支援を使う</span><small>FastAPI・SQLAlchemy・React</small></li>
+          <li><b>構成のコード化</b><span>サーバー・端末・デプロイ先の状態をコードで定義する</span><small>Ansible・Docker Compose・Helm</small></li>
+          <li><b>自動テスト・CI</b><span>変更のたびにテストと静的検査を自動で実行する</span><small>GitHub Actions・自動テスト計104件（pytest・Node）・ansible-lint</small></li>
+          <li><b>運用・計測</b><span>動かした結果を記録し、次の改善につなげる</span><small>ジョブ記録・監査ログ・メトリクス</small></li>
+        </ol>
+      </div>
 
       <article class="case" id="case-1" aria-labelledby="c1-h">
         <div class="case-head">
@@ -616,11 +653,21 @@
     <section id="vision" aria-labelledby="vision-h">
       <p class="chapter latin">6　Vision</p>
       <h2 id="vision-h">今後の展望・自己PR</h2>
-      <p class="lead">Windows・オンプレミス・高額SaaSを積み上げた構造から、GCP・Google Workspace・ChromeOS を軸にしたフルクラウド＆ゼロトラストの構成へ統合する。</p>
+      <p class="lead">次は、開発を仕事の中心にする。AIを使える環境で自分で企画し、コードで動く仕組みとして提供し、運用まで責任を持つ。インフラの経験は、その仕組みを安全に、繰り返し動かすための土台として使う。</p>
+
+      <div class="next" aria-labelledby="next-h">
+        <h3 id="next-h">提供したい仕事</h3>
+        <dl class="next-list">
+          <div><dt>業務の仕組みをコードで作る</dt><dd>手作業や属人化した処理を、Web アプリ・API・自動化スクリプトとして実装する。キッティング・資産管理、貸出管理、動画制作の自動化が、その例。</dd></div>
+          <div><dt>インフラをコードで管理する</dt><dd>Terraform・Ansible・コンテナで環境を定義し、レビューと自動テストを通してから反映する。手順書ではなくコードが、いつでも正しい構成を示す状態にする。</dd></div>
+          <div><dt>開発と運用をつなぐ</dt><dd>CI/CD で、変更から公開までを自動化する。障害時に追えるログと指標を最初から組み込み、運用の経験を設計に戻す。</dd></div>
+          <div><dt>AIを業務に組み込む</dt><dd>データを社外に出せない業務にはローカルLLMを、それ以外にはクラウドのAIを使い分け、判断や繰り返し作業を仕組みにする。</dd></div>
+        </dl>
+      </div>
 
       <div class="arch" aria-labelledby="arch-h">
         <div class="arch-head">
-          <h3 id="arch-h">目標とする構成</h3>
+          <h3 id="arch-h">組織のインフラで目標とする構成</h3>
           <ul class="legend" aria-label="凡例">
             <li><span class="mark exp" aria-hidden="true"></span>職務経歴で担当</li>
             <li><span class="mark work" aria-hidden="true"></span>公開リポジトリで実装</li>
@@ -650,6 +697,7 @@
       <div class="vision-text">
         <div>
           <h3>アーキテクチャ方針</h3>
+          <p>Windows・オンプレミス・高額SaaSを積み上げた構造から、GCP・Google Workspace・ChromeOS を軸にしたフルクラウド＆ゼロトラストの構成へ統合する。</p>
           <p>インフラの構成をコードで管理し（IaC）、開発と運用を同じパイプラインでつなぐ（DevOps）。変更はレビューと自動テストを通してから本番に反映し、同じ手順で何度でも再現できる状態を保つ。</p>
           <p>2016年のクラウド比較、2022年の Azure 展開提案、2023年の AVS 化と Google Drive 移行、現職での Entra ID・SASE への移行と進めてきたクラウド化を、端末とアプリまで含めた統合に広げる。</p>
         </div>
