@@ -3,56 +3,40 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mitsuaki Ishimoda | インフラ／セキュリティアーキテクト</title>
-<meta name="description" content="インフラ／セキュリティアーキテクト。ゼロトラストを前提にした理想のインフラ・セキュリティ構成と、それを実装した制作物、約20年の経歴。">
-<meta property="og:title" content="Mitsuaki Ishimoda | インフラ／セキュリティアーキテクト">
-<meta property="og:description" content="アイデンティティ、エンドポイント、ネットワーク、ワークロード、データ、運用・統制。6つの層で考える理想の構成と、それを実装した制作物。">
+<title>PORTFOLIO | 石母田 光明</title>
+<meta name="description" content="石母田 光明のポートフォリオ。System Architect / IaC / DevOps。ITインフラ・セキュリティ領域の職務経歴と、それに対応する公開リポジトリ。">
+<meta property="og:title" content="PORTFOLIO | 石母田 光明">
+<meta property="og:description" content="System Architect / IaC / DevOps。脆弱性管理の自動化、ID基盤の権限統制、GCPとAIを使ったアプリ実装。">
 <meta property="og:image" content="https://mismd2026.github.io/assets/kitting.webp">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1' y='2' width='14' height='2.4' rx='.6' fill='%232C6AA0'/%3E%3Crect x='1' y='6.8' width='14' height='2.4' rx='.6' fill='%2317283A'/%3E%3Crect x='1' y='11.6' width='14' height='2.4' rx='.6' fill='%2317283A'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;700&family=IBM+Plex+Sans:wght@500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #F2F5F7;
-    --sheet: #FFFFFF;
-    --ink: #17283A;
-    --slate: #5A6B7C;
-    --line: #2C6AA0;
-    --line-soft: #E3EDF6;
-    --rule: #D3DCE4;
-    --exp: #1F7A4D;
-    --work: #2C6AA0;
+    --paper: #F2F5F7; --sheet: #FFFFFF; --ink: #17283A; --slate: #5A6B7C;
+    --line: #2C6AA0; --line-soft: #E3EDF6; --rule: #D3DCE4;
+    --exp: #1F7A4D; --work: #2C6AA0; --plan: #8A6A1F;
     --measure: 38rem;
   }
   @media (prefers-color-scheme: dark) {
-    :root {
-      --paper: #121C27;
-      --sheet: #182533;
-      --ink: #E4EBF1;
-      --slate: #9AAABA;
-      --line: #7FB2E0;
-      --line-soft: #1E3247;
-      --rule: #2A3B4D;
-      --exp: #5CC892;
-      --work: #7FB2E0;
-    }
+    :root { --paper: #121C27; --sheet: #182533; --ink: #E4EBF1; --slate: #9AAABA;
+      --line: #7FB2E0; --line-soft: #1E3247; --rule: #2A3B4D; --exp: #5CC892; --work: #7FB2E0; --plan: #D9B65C; }
   }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-  body {
-    margin: 0; background: var(--paper); color: var(--ink);
+  body { margin: 0; background: var(--paper); color: var(--ink);
     font: 400 16px/1.85 "IBM Plex Sans JP", "Hiragino Sans", "Noto Sans JP", sans-serif;
-    font-feature-settings: "palt" 1; text-rendering: optimizeLegibility;
-  }
+    font-feature-settings: "palt" 1; text-rendering: optimizeLegibility; }
   a { color: var(--line); text-underline-offset: 3px; }
   a:hover { text-decoration-thickness: 2px; }
   :focus-visible { outline: 3px solid var(--line); outline-offset: 3px; border-radius: 2px; }
   img { max-width: 100%; height: auto; display: block; }
   .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
-  h1, h2, h3 { word-break: auto-phrase; text-wrap: balance; }
+  h1, h2, h3, h4 { word-break: auto-phrase; text-wrap: balance; }
+  .latin { font-family: "IBM Plex Sans", "IBM Plex Sans JP", sans-serif; }
 
   .top { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 22px 0; }
   .top .name { font-weight: 700; text-decoration: none; color: var(--ink); }
@@ -60,418 +44,538 @@
   .top nav a { color: var(--slate); text-decoration: none; }
   .top nav a:hover { color: var(--ink); }
 
-  /* hero: the title is the role; the architecture below is the proof */
-  .hero { padding: 40px 0 36px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: end; }
-  .role { font-size: clamp(32px, 5vw, 56px); line-height: 1.25; font-weight: 700; letter-spacing: -.015em; margin: 0 0 14px; }
-  .role .sep { color: var(--line); font-weight: 500; padding: 0 .06em; }
-  .tagline { word-break: auto-phrase; text-wrap: balance; font-size: clamp(17px, 1.8vw, 20px); font-weight: 500; margin: 0; }
-  .hero-text p { margin: 0 0 14px; max-width: var(--measure); }
-  .hero-text p:last-child { margin-bottom: 0; }
+  /* 1. Cover */
+  .cover { padding: 44px 0 56px; display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 56px; align-items: start; }
+  .cover .kind { font-size: 15px; letter-spacing: .32em; color: var(--slate); margin: 0 0 18px; font-weight: 500; }
+  .cover h1 { font-size: clamp(36px, 5vw, 56px); line-height: 1.2; margin: 0 0 14px; font-weight: 700; letter-spacing: .02em; }
+  .cover .title { font-size: clamp(18px, 2vw, 22px); margin: 0 0 28px; font-weight: 500; }
+  .cover .title span { color: var(--line); padding: 0 .3em; }
+  .cover .links { display: flex; gap: 20px; flex-wrap: wrap; font-size: 15px; font-weight: 500; }
 
-  /* architecture: the one bold element on the page */
-  .arch { background: var(--sheet); border: 1px solid var(--rule); border-radius: 10px; padding: 28px 28px 22px; margin: 8px 0 24px; }
-  .arch-head { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
-  .arch h2 { font-size: 22px; margin: 0; }
-  .legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: 13px; color: var(--slate); margin: 0; padding: 0; list-style: none; }
-  .legend li { display: flex; align-items: center; gap: 6px; }
+  /* capability matrix: the first view proves the role by facts, not by copy */
+  .matrix { background: var(--sheet); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; }
+  .matrix table { width: 100%; border-collapse: collapse; font-size: 14px; line-height: 1.6; }
+  .matrix caption { text-align: left; font-weight: 700; font-size: 15px; padding: 14px 16px 10px; }
+  .matrix th, .matrix td { text-align: left; vertical-align: top; padding: 10px 14px; border-top: 1px solid var(--rule); }
+  .matrix thead th { font-size: 12px; font-weight: 500; color: var(--slate); background: color-mix(in srgb, var(--paper) 55%, var(--sheet)); }
+  .matrix tbody th { font-weight: 700; width: 30%; }
+  .matrix tbody th a { color: var(--ink); text-decoration: none; }
+  .matrix tbody th a:hover { color: var(--line); text-decoration: underline; }
+  .matrix .no { color: var(--line); margin-right: .35em; }
 
-  /* the access path: a real sequence, so it is numbered */
-  .path { list-style: none; margin: 0 0 22px; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; counter-reset: p; }
-  .path li { counter-increment: p; position: relative; padding: 12px 18px 12px 14px; background: var(--line-soft); font-size: 14px; line-height: 1.55;
-    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%, 12px 50%); }
-  .path li:first-child { clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%); }
-  .path li:not(:first-child) { margin-left: -6px; padding-left: 24px; }
-  .path b { display: block; font-size: 15px; }
-  .path b::before { content: counter(p) " "; color: var(--line); }
-  .path span { color: var(--slate); font-size: 13px; }
+  /* 2. Index */
+  .index { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 18px 0; }
+  .index ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px 24px; counter-reset: c 2; }
+  .index li { counter-increment: c; }
+  .index a { display: grid; grid-template-columns: 1.2em minmax(0, 1fr); column-gap: 8px; align-items: baseline; text-decoration: none; color: var(--ink); font-weight: 500; }
+  .index a::before { content: counter(c); color: var(--line); font-weight: 700; grid-row: span 2; }
+  .index a span { color: var(--slate); font-weight: 400; font-size: 13px; grid-column: 2; }
+  .index a:hover { color: var(--line); }
 
-  .layers { display: grid; gap: 8px; }
-  .layer { display: grid; grid-template-columns: 11.5rem minmax(0, 1fr); gap: 18px; align-items: start; padding: 14px 16px; border: 1px solid var(--rule); border-left: 4px solid var(--line); border-radius: 6px; }
-  .layer.ops { border-left-color: var(--slate); background: color-mix(in srgb, var(--paper) 60%, var(--sheet)); }
-  .layer h3 { font-size: 16px; margin: 0; line-height: 1.5; }
-  .layer h3 small { display: block; font-weight: 400; font-size: 13px; color: var(--slate); margin-top: 2px; }
-  .chips { display: flex; flex-wrap: wrap; gap: 6px 8px; margin: 0; padding: 0; list-style: none; }
-  .chips li { font-size: 14px; line-height: 1.5; padding: 4px 10px; border: 1px solid var(--rule); border-radius: 999px; background: var(--sheet); display: inline-flex; align-items: center; gap: 6px; }
-  .chips a { text-decoration: none; color: inherit; display: inline-flex; align-items: center; gap: 6px; }
-  .chips li.has-work { border-color: color-mix(in srgb, var(--work) 55%, var(--rule)); }
-  .chips li.has-work:hover { background: var(--line-soft); }
+  section { padding: 72px 0; border-top: 1px solid var(--rule); scroll-margin-top: 8px; }
+  .index + section { border-top: 0; }
+  .chapter { font-size: 14px; color: var(--slate); margin: 0 0 4px; }
+  h2 { font-size: 28px; line-height: 1.4; margin: 0 0 10px; font-weight: 700; }
+  .lead { color: var(--slate); margin: 0 0 36px; max-width: var(--measure); }
+  h3 { font-size: 21px; line-height: 1.45; margin: 0 0 10px; font-weight: 700; }
+  h4 { font-size: 16px; margin: 0 0 8px; }
+
+  /* 3. Profile */
+  .profile { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; }
+  .profile p { margin: 0 0 14px; max-width: var(--measure); }
+  dl.facts { display: grid; grid-template-columns: 7rem minmax(0, 1fr); gap: 6px 16px; margin: 0 0 20px; }
+  dl.facts dt { color: var(--slate); font-size: 14px; padding-top: 2px; }
+  dl.facts dd { margin: 0; }
+  .axis { background: var(--sheet); border: 1px solid var(--rule); border-radius: 10px; padding: 22px; }
+  .axis svg { width: 100%; max-width: 380px; height: auto; display: block; margin: 0 auto 14px; }
+  .axis ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .axis li { font-size: 14px; line-height: 1.6; padding-left: 12px; border-left: 3px solid var(--line); }
+  .axis li b { display: block; font-size: 15px; }
+
+  .history { margin-top: 56px; }
+  .history table { width: 100%; border-collapse: collapse; font-size: 14px; line-height: 1.6; background: var(--sheet); }
+  .history-wrap { border: 1px solid var(--rule); border-radius: 8px; overflow-x: auto; }
+  .history th, .history td { text-align: left; vertical-align: top; padding: 9px 12px; border-top: 1px solid var(--rule); }
+  .history thead th { border-top: 0; font-size: 12px; font-weight: 500; color: var(--slate); background: color-mix(in srgb, var(--paper) 55%, var(--sheet)); white-space: nowrap; }
+  .history td.when { white-space: nowrap; color: var(--slate); font-variant-numeric: tabular-nums; }
+  .history td.role { white-space: nowrap; }
+  .history td.case { white-space: nowrap; }
+  .history td.case a { text-decoration: none; font-weight: 700; }
+  .history .note { font-size: 13px; color: var(--slate); margin: 10px 0 0; }
+
+  /* 4. Skills */
+  dl.skills { display: grid; grid-template-columns: 13rem minmax(0, 1fr); margin: 0; max-width: 60rem; }
+  dl.skills dt { font-weight: 700; padding: 16px 0; border-top: 1px solid var(--rule); }
+  dl.skills dd { margin: 0; padding: 16px 0; border-top: 1px solid var(--rule); }
+  dl.skills dt:first-of-type, dl.skills dt:first-of-type + dd { border-top: 0; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px 8px; margin: 0; padding: 0; list-style: none; }
+  .tags li { font-size: 14px; padding: 3px 10px; border: 1px solid var(--rule); border-radius: 999px; background: var(--sheet); display: inline-flex; align-items: center; gap: 6px; }
   .mark { display: inline-block; width: 8px; height: 8px; flex: none; }
   .mark.exp { background: var(--exp); border-radius: 50%; }
   .mark.work { background: var(--work); transform: rotate(45deg); width: 7px; height: 7px; }
-  .arch-note { font-size: 13px; color: var(--slate); margin: 16px 0 0; }
+  .mark.plan { border: 1.5px solid var(--plan); border-radius: 50%; }
+  .legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: 13px; color: var(--slate); margin: 0 0 20px; padding: 0; list-style: none; }
+  .legend li { display: flex; align-items: center; gap: 6px; }
 
-  /* principles */
-  section { padding: 72px 0; border-top: 1px solid var(--rule); }
-  h2 { font-size: 26px; line-height: 1.4; margin: 0 0 8px; font-weight: 700; }
-  .lead { color: var(--slate); margin: 0 0 36px; max-width: var(--measure); }
-  .principles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 48px; margin: 0; }
-  .principles dt { font-weight: 700; font-size: 18px; margin-bottom: 6px; }
-  .principles dd { margin: 0; max-width: 32rem; }
+  /* 5. Works */
+  .case { padding: 48px 0; border-top: 1px dashed var(--rule); scroll-margin-top: 8px; }
+  .case:first-of-type { border-top: 0; padding-top: 8px; }
+  .case-head { display: flex; gap: 16px; align-items: baseline; margin-bottom: 20px; }
+  .case-no { font-size: 15px; color: var(--line); font-weight: 700; white-space: nowrap; }
+  .case-head h3 { margin: 0; }
+  .case-head .approach { font-size: 14px; color: var(--slate); font-weight: 400; display: block; margin-top: 2px; }
+  .case-body { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 40px; align-items: start; }
+  dl.frame { margin: 0; display: grid; gap: 16px; }
+  dl.frame dt { font-weight: 700; font-size: 15px; display: flex; align-items: center; gap: 8px; }
+  dl.frame dt::before { content: ""; width: 14px; height: 2px; background: var(--line); flex: none; }
+  dl.frame dd { margin: 4px 0 0 22px; max-width: var(--measure); }
+  dl.frame dd ul { margin: 0; padding-left: 1.1em; }
+  dl.frame dd li { margin: 2px 0; }
+  dl.frame dd.plan { border-left: 3px solid var(--plan); padding-left: 12px; margin-left: 22px; }
+  .evidence { background: var(--sheet); border: 1px solid var(--rule); border-radius: 8px; padding: 18px; }
+  .evidence h4 { font-size: 14px; color: var(--slate); font-weight: 500; margin: 0 0 8px; }
+  .evidence ul { list-style: none; margin: 0 0 16px; padding: 0; font-size: 14px; line-height: 1.6; }
+  .evidence ul:last-child { margin-bottom: 0; }
+  .evidence li { padding: 7px 0; border-top: 1px solid var(--rule); display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 10px; }
+  .evidence li:first-child { border-top: 0; padding-top: 0; }
+  .evidence .y { color: var(--slate); font-variant-numeric: tabular-nums; }
+  .evidence .repo a { font-weight: 700; }
+  .evidence .repo li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .evidence .repo small { color: var(--slate); font-size: 13px; }
+  .evidence figure { margin: 0 0 16px; }
+  .evidence figure img { border: 1px solid var(--rule); border-radius: 4px; }
+  .stack { font-size: 14px; color: var(--slate); margin: 12px 0 0 22px; }
 
-  /* works */
-  h3 { font-size: 21px; line-height: 1.45; margin: 0 0 10px; font-weight: 700; }
-  .where { font-size: 14px; color: var(--slate); margin: 0 0 12px; }
-  .where b { color: var(--ink); font-weight: 500; }
-  ul.points { margin: 0 0 18px; padding-left: 1.2em; max-width: var(--measure); }
-  ul.points li { margin: 4px 0; }
-  ul.points li::marker { color: var(--line); }
-  .stack { font-size: 14px; color: var(--slate); margin: 0 0 14px; }
-  .links { display: flex; gap: 20px; flex-wrap: wrap; font-size: 15px; font-weight: 500; }
-  .featured { display: grid; gap: 28px; margin-bottom: 64px; scroll-margin-top: 24px; }
-  .featured figure { margin: 0; background: var(--sheet); border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
-  .featured figcaption { font-size: 13px; color: var(--slate); padding: 10px 14px; border-top: 1px solid var(--rule); }
-  .featured .body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; }
-  .flow { margin: 0 0 18px; padding: 0; list-style: none; counter-reset: s; }
-  .flow li { counter-increment: s; position: relative; padding: 0 0 12px 40px; }
-  .flow li::before { content: counter(s); position: absolute; left: 0; top: 1px; width: 26px; height: 26px; border: 1.5px solid var(--line); border-radius: 50%; color: var(--line); font-size: 13px; font-weight: 700; display: grid; place-items: center; line-height: 1; }
-  .flow li:not(:last-child)::after { content: ""; position: absolute; left: 13px; top: 30px; bottom: 2px; border-left: 1.5px solid var(--rule); }
-  .project { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: start; padding: 48px 0; border-top: 1px dashed var(--rule); scroll-margin-top: 24px; }
-  .project:nth-of-type(even) .media { order: -1; }
-  .project .media img { border: 1px solid var(--rule); border-radius: 6px; background: var(--sheet); }
-  .callflow { margin: 0; background: var(--sheet); border: 1px solid var(--rule); border-radius: 6px; padding: 20px; }
-  .callflow svg { width: 100%; height: auto; }
-  :target { animation: flash 1.6s ease-out; }
-  @keyframes flash { from { background: var(--line-soft); } to { background: transparent; } }
-  @media (prefers-reduced-motion: reduce) { :target { animation: none; } }
-
-  ol.career { list-style: none; margin: 0; padding: 0; max-width: 46rem; }
-  ol.career li { display: grid; grid-template-columns: 10rem minmax(0, 1fr); gap: 24px; padding: 22px 0; border-top: 1px solid var(--rule); }
-  ol.career li:first-child { border-top: 0; padding-top: 0; }
-  .when { color: var(--slate); font-size: 15px; }
-  ol.career h3 { font-size: 18px; margin-bottom: 6px; }
-  ol.career p { margin: 0 0 8px; }
-
-  dl.skills { display: grid; grid-template-columns: 12rem minmax(0, 1fr); margin: 0; max-width: 54rem; }
-  dl.skills dt { font-weight: 700; padding: 14px 0; border-top: 1px solid var(--rule); }
-  dl.skills dd { margin: 0; padding: 14px 0; border-top: 1px solid var(--rule); }
-  dl.skills dt:first-of-type, dl.skills dt:first-of-type + dd { border-top: 0; }
+  /* 6. Vision */
+  .arch { background: var(--sheet); border: 1px solid var(--rule); border-radius: 10px; padding: 26px; margin: 0 0 40px; }
+  .arch-head { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; flex-wrap: wrap; margin-bottom: 18px; }
+  .arch h3 { font-size: 19px; margin: 0; }
+  .shift { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 16px; align-items: stretch; margin: 0 0 22px; }
+  .shift div { border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; font-size: 14px; line-height: 1.6; }
+  .shift div b { display: block; font-size: 15px; margin-bottom: 2px; }
+  .shift .from { color: var(--slate); }
+  .shift .to { border-color: var(--line); background: var(--line-soft); }
+  .shift .arrow { border: 0; display: grid; place-items: center; color: var(--line); font-size: 22px; padding: 0; }
+  .layers { display: grid; gap: 8px; }
+  .layer { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: 18px; align-items: start; padding: 12px 16px; border: 1px solid var(--rule); border-left: 4px solid var(--line); border-radius: 6px; }
+  .layer.ops { border-left-color: var(--slate); }
+  .layer h4 { font-size: 15px; margin: 0; line-height: 1.5; }
+  .layer h4 small { display: block; font-weight: 400; font-size: 13px; color: var(--slate); }
+  .vision-text { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; }
+  .vision-text p { margin: 0 0 14px; max-width: var(--measure); }
+  .pillars { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+  .pillars li { padding-left: 12px; border-left: 3px solid var(--line); }
+  .pillars b { display: block; }
 
   footer { border-top: 1px solid var(--rule); padding: 32px 0 48px; color: var(--slate); font-size: 14px; }
   footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 
   @media (max-width: 900px) {
-    .hero { grid-template-columns: 1fr; gap: 24px; align-items: start; }
-    .path { grid-template-columns: 1fr; gap: 4px; }
-    .path li, .path li:first-child, .path li:not(:first-child) { clip-path: none; margin-left: 0; padding: 10px 14px; border-left: 3px solid var(--line); }
-    .layer { grid-template-columns: 1fr; gap: 10px; }
-    .principles { grid-template-columns: 1fr; gap: 24px; }
-    .featured .body, .project { grid-template-columns: 1fr; gap: 24px; }
-    .project:nth-of-type(even) .media { order: 0; }
-    ol.career li, dl.skills { grid-template-columns: 1fr; gap: 4px; }
+    .cover, .profile, .case-body, .vision-text { grid-template-columns: 1fr; gap: 32px; }
+    .index ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .layer { grid-template-columns: 1fr; gap: 8px; }
+    .shift { grid-template-columns: 1fr; }
+    .shift .arrow { transform: rotate(90deg); }
+    dl.skills { grid-template-columns: 1fr; }
     dl.skills dt { padding-bottom: 0; }
-    dl.skills dd { border-top: 0; padding-top: 4px; }
+    dl.skills dd { border-top: 0; padding-top: 8px; }
   }
-  @media (max-width: 520px) {
+  @media (max-width: 560px) {
     .wrap { padding: 0 16px; }
     .top { flex-direction: column; gap: 6px; }
-    .arch { padding: 20px 16px 16px; margin-left: -4px; margin-right: -4px; }
     section { padding: 56px 0; }
+    .matrix thead { display: none; }
+    .matrix tr { display: block; border-top: 1px solid var(--rule); padding: 8px 0; }
+    .matrix th, .matrix td { display: block; border: 0; padding: 3px 14px; width: auto !important; }
+    .matrix td::before { content: attr(data-h) "："; color: var(--slate); }
+    .case-head { flex-direction: column; gap: 2px; }
+    dl.frame dd, .stack { margin-left: 0; }
+    dl.frame dd.plan { margin-left: 0; }
+    .evidence li { grid-template-columns: 1fr; gap: 0; }
+    .arch { padding: 18px 14px; }
   }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header class="top">
-    <a class="name" href="#">Mitsuaki Ishimoda</a>
-    <nav aria-label="ページ内">
-      <a href="#architecture">理想の構成</a>
-      <a href="#works">作ったもの</a>
-      <a href="#career">経歴</a>
-      <a href="https://github.com/mismd2026">GitHub</a>
+    <a class="name" href="#">石母田 光明</a>
+    <nav aria-label="セクション">
+      <a href="#profile">Profile</a>
+      <a href="#skills">Skills</a>
+      <a href="#works">Works</a>
+      <a href="#vision">Vision</a>
     </nav>
   </header>
 
   <main>
-    <div class="hero">
+    <!-- 1. 表紙 -->
+    <div class="cover">
       <div>
-        <h1 class="role">インフラ<span class="sep">／</span>セキュリティ<br>アーキテクト</h1>
-        <p class="tagline">設計から構築・運用・自動化まで、一人で持ち切ります。</p>
+        <p class="kind latin">PORTFOLIO</p>
+        <h1>石母田 光明</h1>
+        <p class="title latin">System Architect<span>/</span>IaC<span>/</span>DevOps</p>
+        <div class="links">
+          <a href="https://github.com/mismd2026">GitHub</a>
+          <a href="#works">Works</a>
+        </div>
       </div>
-      <div class="hero-text">
-        <p>外資系小売企業の日本法人で約20年、物理サーバーと仮想化基盤の新規構築、データセンターのネットワーク、マルチクラウド、PCI DSSの監査対応、セキュリティ監視基盤の構築と運用までを担当してきました。</p>
-        <p>守りを後付けしない構成を、最初の設計から組み込むことを大切にしています。下の図が、いま私が理想とするインフラとセキュリティの構成です。</p>
+
+      <div class="matrix">
+        <table>
+          <caption>提供できる機能</caption>
+          <thead><tr><th scope="col">機能</th><th scope="col">必要になる理由</th><th scope="col">必要になるシステム構成</th></tr></thead>
+          <tbody>
+            <tr>
+              <th scope="row"><a href="#case-1"><span class="no">①</span>脆弱性の検出から修復までの自動化</a></th>
+              <td data-h="理由">診断ツールは指摘までで、修復は手作業のまま残る</td>
+              <td data-h="構成">Nessus 等を導入済み、端末・サーバーが数百〜数千台</td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="#case-2"><span class="no">②</span>ID基盤・SaaS間の権限統制</a></th>
+              <td data-h="理由">製品ごとの仕様差で、即時遮断や特権IDの管理に抜けが出る</td>
+              <td data-h="構成">Active Directory、Google Workspace、SaaS、プロキシが混在</td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="#case-3"><span class="no">③</span>Webアプリ・AI自動化の実装</a></th>
+              <td data-h="理由">業務の判断や手順を、短期間で動く仕組みにする</td>
+              <td data-h="構成">Google AI Studio・クラウド実行環境・ローカルLLM</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
-    <div class="arch" id="architecture" aria-labelledby="arch-h">
-      <div class="arch-head">
-        <h2 id="arch-h">理想のインフラ・セキュリティ構成</h2>
-        <ul class="legend" aria-label="凡例">
-          <li><span class="mark exp" aria-hidden="true"></span>実務で担当</li>
-          <li><span class="mark work" aria-hidden="true"></span>制作物で実装（押すと該当作品へ）</li>
-        </ul>
-      </div>
-
-      <ol class="path" aria-label="1回のアクセスで通る確認の順番">
-        <li><b>本人を確かめる</b><span>多要素認証・シングルサインオン</span></li>
-        <li><b>端末を確かめる</b><span>暗号化・パッチ・EDRの状態</span></li>
-        <li><b>必要な分だけ通す</b><span>アプリ単位・最小権限</span></li>
-        <li><b>データを守る</b><span>暗号化・持ち出し制御</span></li>
-        <li><b>すべて記録する</b><span>監査証跡・検知・対応</span></li>
+    <!-- 2. 目次 -->
+    <nav class="index" aria-label="目次">
+      <ol>
+        <li><a href="#profile">Profile<span>経歴と設計軸</span></a></li>
+        <li><a href="#skills">Skills<span>技術と道具</span></a></li>
+        <li><a href="#works">Works &amp; Gap Bridging<span>実績と作品</span></a></li>
+        <li><a href="#vision">Vision<span>今後の構成方針</span></a></li>
       </ol>
+    </nav>
 
-      <div class="layers">
-        <div class="layer">
-          <h3>アイデンティティ<small>新しい境界線</small></h3>
-          <ul class="chips">
-            <li>IdP・シングルサインオン</li>
-            <li>多要素認証・パスキー</li>
-            <li>条件付きアクセス</li>
-            <li><span class="mark exp" aria-hidden="true"></span>特権ID管理<span class="sr">（実務で担当）</span></li>
-            <li>必要なときだけ権限を付与（JIT）</li>
-            <li class="has-work"><a href="#p-kit"><span class="mark work" aria-hidden="true"></span>役割ごとの権限と発行トークンのハッシュ保存<span class="sr">（制作物で実装）</span></a></li>
-          </ul>
+    <!-- 3. Profile -->
+    <section id="profile" aria-labelledby="profile-h">
+      <p class="chapter latin">3　Profile</p>
+      <h2 id="profile-h">自己紹介・プロフィール</h2>
+      <div class="profile">
+        <div>
+          <dl class="facts">
+            <dt>氏名</dt><dd>石母田 光明</dd>
+            <dt>GitHub</dt><dd><a href="https://github.com/mismd2026">github.com/mismd2026</a></dd>
+            <dt>ポートフォリオ</dt><dd><a href="https://mismd2026.github.io">mismd2026.github.io</a></dd>
+          </dl>
+          <h3>経歴・概要</h3>
+          <p>コストコホールセールジャパン等にて約20年間、ITインフラ・セキュリティ領域に従事。</p>
+          <p>大規模ネットワーク構築、サーバー移設、Active Directoryの標準化（IAM）、セキュリティ監査対応（PCI DSS等）から、Python / GAS / PowerShell / IaCを活用した自動化・システム統合までを、要件定義から導入後の運用まで一貫して担当。</p>
+          <p>最大約20名規模のプロジェクトでPM / PLを担当し、米国本社のチームとは英語で調整。</p>
+          <h3>評価・設計軸</h3>
+          <p>「信頼性・可用性」「性能・拡張性」「セキュリティ」「運用・保守性」「コスト」の5つの指標に基づいて構造を設計する。既存製品の境界にある仕様の隙間は自作コードやIaCで埋め、GCPへの統合を見据えた構成を組む。</p>
         </div>
-        <div class="layer">
-          <h3>エンドポイント<small>入口の端末</small></h3>
-          <ul class="chips">
-            <li><span class="mark exp" aria-hidden="true"></span>SCCM / MECM による配布と管理<span class="sr">（実務で担当）</span></li>
-            <li class="has-work"><a href="#p-kit"><span class="mark work" aria-hidden="true"></span>標準イメージ＋Ansibleで同じ状態に<span class="sr">（制作物で実装）</span></a></li>
-            <li class="has-work"><a href="#p-kit"><span class="mark work" aria-hidden="true"></span>BitLocker・Defender・LAPS<span class="sr">（制作物で実装）</span></a></li>
-            <li class="has-work"><a href="#p-kit"><span class="mark work" aria-hidden="true"></span>台帳にない端末は受け付けない<span class="sr">（制作物で実装）</span></a></li>
-            <li>パッチ適用の自動化</li>
-          </ul>
-        </div>
-        <div class="layer">
-          <h3>ネットワーク<small>場所で信用しない</small></h3>
-          <ul class="chips">
-            <li><span class="mark exp" aria-hidden="true"></span>Zscaler（クラウド型プロキシ）<span class="sr">（実務で担当）</span></li>
-            <li><span class="mark exp" aria-hidden="true"></span>データセンターのネットワーク設計<span class="sr">（実務で担当）</span></li>
-            <li><span class="mark exp" aria-hidden="true"></span>ファイアウォール<span class="sr">（実務で担当）</span></li>
-            <li><span class="mark exp" aria-hidden="true"></span>Umbrella（DNSでの遮断）<span class="sr">（実務で担当）</span></li>
-            <li><span class="mark exp" aria-hidden="true"></span>FireEye（標的型攻撃の検知）<span class="sr">（実務で担当）</span></li>
-            <li>アプリ単位の接続（ZTNA）</li>
-            <li>セグメント分割</li>
-            <li class="has-work"><a href="#p-kit"><span class="mark work" aria-hidden="true"></span>管理経路を専用サブネットに限定<span class="sr">（制作物で実装）</span></a></li>
-            <li class="has-work"><a href="#p-call"><span class="mark work" aria-hidden="true"></span>AIサーバーの外向き通信を遮断<span class="sr">（制作物で実装）</span></a></li>
-          </ul>
-        </div>
-        <div class="layer">
-          <h3>ワークロード<small>サーバーとクラウド</small></h3>
-          <ul class="chips">
-            <li><span class="mark exp" aria-hidden="true"></span>VMware・Citrix 基盤の新規構築<span class="sr">（実務で担当）</span></li>
-            <li><span class="mark exp" aria-hidden="true"></span>AWS・Azure・Google Cloud<span class="sr">（実務で担当）</span></li>
-            <li>ランディングゾーンでの統制</li>
-            <li class="has-work"><a href="#p-call"><span class="mark work" aria-hidden="true"></span>コードで定義する構成（Helm・Docker）<span class="sr">（制作物で実装）</span></a></li>
-            <li>秘密情報の一元管理</li>
-          </ul>
-        </div>
-        <div class="layer">
-          <h3>データ<small>最後に守るもの</small></h3>
-          <ul class="chips">
-            <li><span class="mark exp" aria-hidden="true"></span>カード会員データの保護（PCI DSS）<span class="sr">（実務で担当）</span></li>
-            <li>保存時・通信時の暗号化</li>
-            <li>持ち出し制御（DLP）</li>
-            <li>改ざんできないバックアップ</li>
-            <li class="has-work"><a href="#p-call"><span class="mark work" aria-hidden="true"></span>会話データを社外のAIに出さない<span class="sr">（制作物で実装）</span></a></li>
-            <li class="has-work"><a href="#p-call"><span class="mark work" aria-hidden="true"></span>テナント間のデータ分離<span class="sr">（制作物で実装）</span></a></li>
-            <li class="has-work"><a href="#p-kit"><span class="mark work" aria-hidden="true"></span>廃棄時のデータ消去証跡<span class="sr">（制作物で実装）</span></a></li>
-          </ul>
-        </div>
-        <div class="layer ops">
-          <h3>運用・統制<small>全層を横断</small></h3>
-          <ul class="chips">
-            <li><span class="mark exp" aria-hidden="true"></span>PCI DSS の監査対応<span class="sr">（実務で担当）</span></li>
-            <li><span class="mark exp" aria-hidden="true"></span>ServiceNow による変更・運用管理<span class="sr">（実務で担当）</span></li>
-            <li><span class="mark exp" aria-hidden="true"></span>ログの集約と検知（SIEM）<span class="sr">（実務で担当）</span></li>
-            <li><span class="mark exp" aria-hidden="true"></span>FireMon（ルールの監査）<span class="sr">（実務で担当）</span></li>
-            <li><span class="mark exp" aria-hidden="true"></span>Nessus（脆弱性診断）<span class="sr">（実務で担当）</span></li>
-            <li><span class="mark exp" aria-hidden="true"></span>フォレンジック（事後調査）<span class="sr">（実務で担当）</span></li>
-            <li>SLOに基づく監視</li>
-            <li class="has-work"><a href="#p-kit"><span class="mark work" aria-hidden="true"></span>全操作の監査ログ<span class="sr">（制作物で実装）</span></a></li>
-            <li class="has-work"><a href="#p-lend"><span class="mark work" aria-hidden="true"></span>編集できない記録シート<span class="sr">（制作物で実装）</span></a></li>
-            <li class="has-work"><a href="#p-call"><span class="mark work" aria-hidden="true"></span>処理時間の計測と指標出力<span class="sr">（制作物で実装）</span></a></li>
-          </ul>
-        </div>
-      </div>
-      <p class="arch-note">印のない項目は、私が設計するときに標準として組み込む要素です。製品は環境に合わせて選びます。</p>
-    </div>
 
-    <section id="principles" aria-labelledby="pr-h">
-      <h2 id="pr-h">設計で大切にしていること</h2>
-      <p class="lead">構成図は環境によって変わりますが、判断の軸は変えていません。</p>
-      <dl class="principles">
-        <div>
-          <dt>場所ではなく、毎回確かめる</dt>
-          <dd>社内ネットワークにいるから安全、とは考えません。アクセスのたびに、本人・端末・権限を確かめる前提で組みます。</dd>
-        </div>
-        <div>
-          <dt>権限は最小限、例外は記録に残す</dt>
-          <dd>管理者権限は必要なときだけ与えます。止むを得ない例外は、誰が・いつ・なぜ使ったかを後から追えるようにします。</dd>
-        </div>
-        <div>
-          <dt>人の手順を、仕組みに置き換える</dt>
-          <dd>手作業の設定は必ずばらつきます。イメージ・Ansible・コードで「正しい状態」を定義し、何度でも同じ結果になるようにします。</dd>
-        </div>
-        <div>
-          <dt>監査に、後から慌てない</dt>
-          <dd>PCI DSSの監査対応の経験から、証跡は運用の副産物として自然に残る設計にしています。記録のための作業を増やしません。</dd>
-        </div>
-      </dl>
-    </section>
-
-    <section id="works" aria-labelledby="works-h">
-      <h2 id="works-h">作ったもの</h2>
-      <p class="lead">上の構成の一部を、実際に動くシステムとして作りました。各リポジトリには構成図、設計の判断理由、自動テストを載せています。</p>
-
-      <article class="featured" id="p-kit" aria-labelledby="p-kit-h">
-        <figure>
-          <img src="assets/kitting.webp" width="1400" height="831" alt="資産一覧の画面。状態ごとの台数、償却残価の合計、機種・S/N・ホスト名・割り当て先・価格・保証期限の一覧が並んでいる。">
-          <figcaption>資産一覧（デモデータ）。状態別の台数と、表示中の資産の償却残価合計が一目で分かります。</figcaption>
-        </figure>
-        <div class="body">
-          <div>
-            <h3 id="p-kit-h">PCキッティングと資産管理システム</h3>
-            <p class="where">構成での位置：<b>エンドポイント</b>・<b>アイデンティティ</b>・<b>運用・統制</b></p>
-            <p>1台ずつの手作業セットアップと、Excelの台帳を別々に管理していると、設定漏れや台帳とのずれが必ず起きます。イメージ展開から設定、発注から廃棄までの台帳を1つの仕組みにまとめました。</p>
-            <ol class="flow" aria-label="キッティングの流れ">
-              <li>パターン別のUSBから起動し、番号を選ぶ</li>
-              <li>Windowsが展開され、初回起動でシリアル番号を資産DBへ登録</li>
-              <li>資産DBがAnsibleの設定を自動で実行し、結果を記録</li>
-            </ol>
-          </div>
-          <div>
-            <ul class="points">
-              <li>台帳にないPCは受け付けず、作業中のPCのシリアル番号を照合して取り違えを防止</li>
-              <li>BitLocker・Defender・LAPS・ファイアウォールを全台に同じ基準で適用</li>
-              <li>管理用の通信は専用サブネットからのHTTPSに限定</li>
-              <li>廃棄にはデータ消去の証跡を必須にし、すべての操作を監査ログに記録</li>
-              <li>予算・購入先・P/N・S/N・保証期間・償却残価など、調達から廃棄までの全項目を管理</li>
-            </ul>
-            <p class="stack">Python・FastAPI・PostgreSQL・Ansible（WinRM）・WinPE / DISM・PowerShell・Docker</p>
-            <div class="links"><a href="https://github.com/mismd2026/pc-kitting-asset-manager">リポジトリを見る</a></div>
-          </div>
-        </div>
-      </article>
-
-      <article class="project" id="p-call" aria-labelledby="p-call-h">
-        <div>
-          <h3 id="p-call-h">外部のAIを使わないAIコールセンター</h3>
-          <p class="where">構成での位置：<b>データ</b>・<b>ネットワーク</b>・<b>ワークロード</b></p>
-          <p>電話の音声と会話の中身を社外に出さずに、AIで一次対応する仕組みです。医療や金融など、クラウドのAIサービスを使いにくい業種を想定しています。</p>
-          <ul class="points">
-            <li>AIの接続先が社外を向いていると起動しない設定にし、Kubernetes上でも外への通信を遮断</li>
-            <li>データベースの行単位の制御で、他社のデータを構造的に読めないように分離</li>
-            <li>FAQにはっきり当てはまる質問は原文のまま読み上げ、AIの誤回答を防止</li>
-            <li>「人と話したい」「解約」などは必ずオペレーターへ引き継ぎ</li>
-          </ul>
-          <p class="stack">Python・FastAPI・faster-whisper・Ollama・VOICEVOX・PostgreSQL（pgvector）・Kubernetes / Helm</p>
-          <div class="links"><a href="https://github.com/mismd2026/ai-callcenter-ollama">リポジトリを見る</a></div>
-        </div>
-        <figure class="media callflow">
-          <svg viewBox="0 0 420 250" role="img" aria-labelledby="cf-t">
-            <title id="cf-t">1回の発話の処理。音声認識、FAQ検索、条件によってFAQ回答・AI回答・オペレーター引き継ぎに分かれる。</title>
-            <g font-family="inherit" font-size="13" fill="var(--ink)">
-              <rect x="10" y="18" width="110" height="40" rx="5" fill="none" stroke="var(--line)" stroke-width="1.5"/>
-              <text x="65" y="43" text-anchor="middle">発話を文字に</text>
-              <rect x="155" y="18" width="110" height="40" rx="5" fill="none" stroke="var(--line)" stroke-width="1.5"/>
-              <text x="210" y="43" text-anchor="middle">FAQを検索</text>
-              <path d="M120 38 H150" stroke="var(--slate)" stroke-width="1.5" marker-end="url(#ah)"/>
-              <path d="M210 58 V86 M210 86 H70 V112 M210 86 V112 M210 86 H350 V112" fill="none" stroke="var(--slate)" stroke-width="1.5"/>
-              <rect x="10" y="114" width="120" height="58" rx="5" fill="var(--paper)" stroke="var(--rule)"/>
-              <text x="70" y="138" text-anchor="middle" font-weight="700">FAQを読み上げ</text>
-              <text x="70" y="158" text-anchor="middle" font-size="11" fill="var(--slate)">一致度が高い</text>
-              <rect x="150" y="114" width="120" height="58" rx="5" fill="var(--paper)" stroke="var(--rule)"/>
-              <text x="210" y="138" text-anchor="middle" font-weight="700">AIが回答</text>
-              <text x="210" y="158" text-anchor="middle" font-size="11" fill="var(--slate)">FAQだけを根拠に</text>
-              <rect x="290" y="114" width="120" height="58" rx="5" fill="var(--paper)" stroke="var(--line)" stroke-width="1.5"/>
-              <text x="350" y="138" text-anchor="middle" font-weight="700">オペレーターへ</text>
-              <text x="350" y="158" text-anchor="middle" font-size="11" fill="var(--slate)">解約・苦情・不明</text>
-              <path d="M270 143 H286" stroke="var(--slate)" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#ah)"/>
-              <text x="210" y="214" text-anchor="middle" font-size="12" fill="var(--slate)">社内のサーバーだけで処理し、音声で返す</text>
-              <path d="M70 172 V196 H350 V172 M210 172 V196" fill="none" stroke="var(--rule)" stroke-width="1.5"/>
+        <div class="axis">
+          <svg viewBox="0 0 380 330" role="img" aria-labelledby="venn-t venn-d">
+            <title id="venn-t">5つの指標と重なりで生じるリスク</title>
+            <desc id="venn-d">信頼性・コスト・機能性の3つの円が重なり、運用リスク、セキュリティリスク、可用性リスク、中央に事業継続リスクが生じる。</desc>
+            <g fill="var(--line)" fill-opacity=".14" stroke="var(--line)" stroke-opacity=".55" stroke-width="1.2">
+              <circle cx="190" cy="112" r="96"/>
+              <circle cx="128" cy="216" r="96"/>
+              <circle cx="252" cy="216" r="96"/>
             </g>
-            <defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="var(--slate)"/></marker></defs>
+            <g font-family="inherit" fill="var(--ink)" text-anchor="middle" font-size="13">
+              <text x="190" y="62" font-weight="700">信頼性のリスク</text>
+              <text x="82" y="252" font-weight="700">コスト</text>
+              <text x="298" y="252" font-weight="700">機能性リスク</text>
+              <text x="128" y="150">運用リスク</text>
+              <text x="258" y="146">セキュリティ</text>
+              <text x="258" y="163">リスク</text>
+              <text x="190" y="256">可用性</text>
+              <text x="190" y="273">リスク</text>
+              <text x="190" y="185" font-weight="700">事業継続</text>
+              <text x="190" y="202" font-weight="700">リスク</text>
+            </g>
           </svg>
-        </figure>
-      </article>
-
-      <article class="project" id="p-lend" aria-labelledby="p-lend-h">
-        <div>
-          <h3 id="p-lend-h">PC貸出管理システム</h3>
-          <p class="where">構成での位置：<b>運用・統制</b>・<b>エンドポイント</b></p>
-          <p>紙とExcelで行っていた社内PCの貸出管理を、Googleスプレッドシートを台帳にしたWebアプリに置き換えました。Google Workspaceだけで動くので、追加の費用はかかりません。</p>
-          <ul class="points">
-            <li>利用者・窓口・管理者の3つの役割で、できる操作を分離</li>
-            <li>操作はすべて、編集できない監査ログのシートに記録</li>
-            <li>2人が同じPCを同時に登録しても二重貸出にならないよう排他制御</li>
-            <li>延滞は本人へ、続くと管理者へ自動でメール</li>
+          <ul>
+            <li><b>信頼性・可用性</b>安定稼働の継続と、障害時にどれだけ速く復旧できるか</li>
+            <li><b>性能・拡張性</b>現在の規模に足りる処理性能と、利用増加や新サービスへの柔軟性</li>
+            <li><b>セキュリティ</b>脅威への防御、データ保護、アクセス管理、監査体制</li>
+            <li><b>運用・保守性</b>作業の属人化を防ぎ、監視・バックアップなどの日常運用が適切か</li>
+            <li><b>コスト</b>運用コストと投資対効果、長期的に最適化された費用設計か</li>
           </ul>
-          <p class="stack">Google Apps Script・Googleスプレッドシート・HTML / JavaScript</p>
-          <div class="links"><a href="https://github.com/mismd2026/pc-lending-system">リポジトリを見る</a></div>
         </div>
-        <div class="media">
-          <img src="assets/lending.webp" width="900" height="560" alt="機器一覧の画面。資産番号、機種、状態（貸出中・貸出可・修理中）、利用者と返却期限が並び、延滞は赤字で表示されている。">
-        </div>
-      </article>
+      </div>
 
-      <article class="project" id="p-video" aria-labelledby="p-video-h">
-        <div>
-          <h3 id="p-video-h">動画制作の自動化パイプライン</h3>
-          <p class="where">構成での位置：<b>自動化</b>（セキュリティ以外の業務自動化の例）</p>
-          <p>話題の調査から台本、ナレーション、編集、YouTubeへの投稿までを1つのコマンドで実行します。途中で失敗しても、終わった工程はやり直さずに続きから再開できます。</p>
-          <ul class="points">
-            <li>工程ごとの完了状態を記録し、失敗した工程から再開</li>
-            <li>アップロードは通信が切れても続きから再送し、公開設定は最初「非公開」</li>
-            <li>認証情報は環境変数だけで扱い、リポジトリに残さない</li>
-          </ul>
-          <p class="stack">Python・ffmpeg・YouTube Data API・Ollama・VOICEVOX</p>
-          <div class="links"><a href="https://github.com/mismd2026/video-automation-pipeline">リポジトリを見る</a></div>
+      <div class="history">
+        <h3>主な職務経歴（コストコホールセールジャパン）</h3>
+        <div class="history-wrap">
+          <table>
+            <thead><tr><th scope="col">期間</th><th scope="col">プロジェクト</th><th scope="col">役割</th><th scope="col">関連</th></tr></thead>
+            <tbody>
+              <tr><td class="when">2023.10–2024.08</td><td>ファイルサーバーの Google Drive 化（調査・移行計画・リプリケートサーバー構築）</td><td class="role">構築・運用</td><td class="case"><a href="#vision">Vision</a></td></tr>
+              <tr><td class="when">2023.02–2023.11</td><td>サーバー群の Azure VMware Solution（AVS）化：ベンダー選定・PoC</td><td class="role">PM（7名）</td><td class="case"><a href="#vision">Vision</a></td></tr>
+              <tr><td class="when">2023.02–2023.10</td><td>AD特権ID管理システム導入（ManageEngine 選定・導入、AD-人事連携の構築）</td><td class="role">構築・運用</td><td class="case"><a href="#case-2">②</a></td></tr>
+              <tr><td class="when">2022.05–2022.10</td><td>Azure へのサーバー展開を提案。見積・中長期計画を米国と共有し、グループのIT戦略として採用</td><td class="role">発案・資料作成</td><td class="case"><a href="#vision">Vision</a></td></tr>
+              <tr><td class="when">2022.02–</td><td>PCI DSS 監査要件の対応（拠点調査、Nmap・Wireshark）、プライバシーポリシーの取り扱い調査</td><td class="role">運用</td><td class="case"><a href="#case-1">①</a></td></tr>
+              <tr><td class="when">2021.05–2022.02</td><td>MECM（SCCM）導入：メインサーバー構築、拠点DP配布、GPOによるエージェント展開、更新適用の検証</td><td class="role">構築・運用（10名）</td><td class="case"><a href="#case-1">①</a> <a href="#case-2">②</a></td></tr>
+              <tr><td class="when">2021.01–2021.04</td><td>本社集中管理からデータセンター集中管理へ移行。全PCの情報整理と変更用プログラム作成（VBS・Python）</td><td class="role">ベンダー管理（17名）</td><td class="case"><a href="#case-2">②</a></td></tr>
+              <tr><td class="when">2020.08–2020.12</td><td>米国セキュリティチーム構成のセキュリティ機器群（サーバー20数台）をデータセンターに設置・接続</td><td class="role">ベンダー管理・運用</td><td class="case"><a href="#case-1">①</a></td></tr>
+              <tr><td class="when">2020.03–2020.07</td><td>海外の基幹システムを日本のデータセンターへ移設（バックアップ設計・DNS・クライアント設定）</td><td class="role">ベンダー管理</td><td class="case"></td></tr>
+              <tr><td class="when">2020.02–2020.03</td><td>COVID-19 対応のリモート環境構築、Zscaler による二要素認証</td><td class="role">構築</td><td class="case"><a href="#case-2">②</a></td></tr>
+              <tr><td class="when">2019.10–2020.01</td><td>セキュリティパッチ管理ツール導入：PC 1,500台・サーバー50台・ネットワーク機器340台の検知と適用</td><td class="role">リーダー（8名）</td><td class="case"><a href="#case-1">①</a></td></tr>
+              <tr><td class="when">2019.06–2019.10</td><td>ファイアウォール切り替え（Cisco ASA → Palo Alto）</td><td class="role">ベンダー管理</td><td class="case"></td></tr>
+              <tr><td class="when">2018.01–2018.10</td><td>仮想基盤上に脆弱性検出システムを導入。日次CSVをGCP上で集計し、週次レポートを自動配信（GAS）</td><td class="role">PM</td><td class="case"><a href="#case-1">①</a></td></tr>
+              <tr><td class="when">2017.01–2018.01</td><td>データセンター設置、本社サーバー16台を移設（VMware ESXi 6.5 / vCenter）</td><td class="role">ベンダー管理・予算管理</td><td class="case"></td></tr>
+              <tr><td class="when">2016.08–2017.10</td><td>データセンターかクラウド（Azure・AWS・GCP）かを5社比較で検討</td><td class="role">PM</td><td class="case"><a href="#vision">Vision</a></td></tr>
+              <tr><td class="when">2016.04–2017.10</td><td>脆弱性検出サーバー（Nessus・Tripwire、RHEL）の構築・運用、週次レポートの集計・分析ツール作成</td><td class="role">構築・運用</td><td class="case"><a href="#case-1">①</a></td></tr>
+              <tr><td class="when">2016.03–2016.08</td><td>セキュリティ機器の導入・運用（FireEye、Gigamon、Balabit、FireMon、OpenDNS）</td><td class="role">基本設計・導入補佐・運用</td><td class="case"><a href="#case-1">①</a></td></tr>
+              <tr><td class="when">2014.07–2015.08</td><td>Zabbix による死活監視・ネットワーク負荷検知の構築と運用</td><td class="role">設計・構築・運用</td><td class="case"></td></tr>
+              <tr><td class="when">2009–2016</td><td>GAS・PHP による社内ツール開発（チケット管理、社内イントラ、価格比較サイト）、ADポリシーによるPC設定の一部自動化</td><td class="role">設計・開発・運用</td><td class="case"><a href="#case-3">③</a></td></tr>
+            </tbody>
+          </table>
         </div>
-        <div class="media">
-          <img src="assets/video-thumb.webp" width="900" height="506" alt="自動生成されたサムネイル。長いタイトルが単語の途中で切れずに2行に折り返されている。">
-        </div>
-      </article>
+        <p class="note">2004年入社。詳細は職務経歴書に記載しています。</p>
+      </div>
     </section>
 
-    <section id="career" aria-labelledby="career-h">
-      <h2 id="career-h">経歴</h2>
-      <p class="lead">職務経歴書の詳細は、転職エージェント経由でお渡しできます。</p>
-      <ol class="career">
-        <li>
-          <div class="when">約20年</div>
-          <div>
-            <h3>外資系小売企業（日本法人）　インフラ全般</h3>
-            <p>物理サーバーと仮想化基盤の新規構築、データセンターのネットワーク、マルチクラウド、PCI DSSの監査対応、特権IDの管理、大規模プロジェクトの管理を担当しました。</p>
-            <p>米国本社と共同で、セキュリティ機器を1ラックに集約した監視基盤（社内呼称「セキュリティスイート」）の構築に参加し、運用を担当しました。ファイアウォール、FireEye、FireMon、フォレンジック、Nessus、ログ分析、Umbrella などを組み合わせた、SIEMにあたる仕組みです。米国本社の方針で、領域ごとの分業ではなく、一人で設計から運用までを受け持つ働き方をしてきました。</p>
-          </div>
-        </li>
-        <li>
-          <div class="when">2024年12月〜</div>
-          <div><h3>現職　アシスタントマネージャー</h3></div>
-        </li>
-        <li>
-          <div class="when">これから</div>
-          <div>
-            <h3>インフラ／セキュリティアーキテクトとして</h3>
-            <p>SRE・プラットフォーム・セキュリティ・ITガバナンスの領域で、最初の設計から安全と信頼性を組み込む仕事を目指しています。</p>
-          </div>
-        </li>
-      </ol>
-    </section>
-
+    <!-- 4. Skills -->
     <section id="skills" aria-labelledby="skills-h">
-      <h2 id="skills-h">得意なこと</h2>
-      <p class="lead">業務で使ってきたものと、上の制作物で使ったものです。</p>
+      <p class="chapter latin">4　Skills</p>
+      <h2 id="skills-h">スキルセット</h2>
+      <ul class="legend" aria-label="凡例">
+        <li><span class="mark exp" aria-hidden="true"></span>職務経歴で使用</li>
+        <li><span class="mark work" aria-hidden="true"></span>公開リポジトリで使用</li>
+      </ul>
       <dl class="skills">
-        <dt>セキュリティ・ガバナンス</dt>
-        <dd>SIEMにあたる監視基盤の構築参加と運用（ファイアウォール・FireEye・FireMon・Nessus・Umbrella・フォレンジック）、PCI DSSの監査対応、特権IDの管理、Zscaler、エンドポイント管理（SCCM / MECM）、BitLocker・LAPS・Defender の標準化</dd>
-        <dt>インフラ基盤</dt>
-        <dd>物理サーバーの構築・保守、VMware・Citrixによる仮想化基盤の新規構築、データセンターのネットワーク設計</dd>
-        <dt>クラウド</dt>
-        <dd>AWS、Azure、Google Cloud を組み合わせたマルチクラウド、Docker・Kubernetes</dd>
-        <dt>運用・プロジェクト</dt>
-        <dd>ServiceNowを使ったIT運用、大規模プロジェクトの管理</dd>
-        <dt>自動化・開発</dt>
-        <dd>Python（FastAPI・SQLAlchemy）、Ansible、PowerShell、Google Apps Script、SQL / PostgreSQL、Java、PHP、JavaScript、VBScript</dd>
+        <dt>クラウド / IaC</dt>
+        <dd><ul class="tags">
+          <li><span class="mark exp"></span>GCP（レポート集計基盤）</li>
+          <li><span class="mark exp"></span>Google Workspace（Drive 移行）</li>
+          <li>ChromeOS</li>
+          <li><span class="mark exp"></span>Azure（AVS / IaaS）</li>
+          <li><span class="mark work"></span>Ansible</li>
+          <li><span class="mark work"></span>Docker Compose</li>
+          <li><span class="mark work"></span>Kubernetes / Helm</li>
+          <li><span class="mark work"></span>GitHub Actions</li>
+        </ul></dd>
+        <dt>OS / サーバー</dt>
+        <dd><ul class="tags">
+          <li><span class="mark exp"></span>Windows Server（Active Directory・MECM / SCCM・GPO設計）</li>
+          <li><span class="mark exp"></span>VMware ESXi / vCenter</li>
+          <li><span class="mark exp"></span>Linux（RHEL・CentOS・Ubuntu）</li>
+          <li><span class="mark work"></span>WinPE / DISM</li>
+        </ul></dd>
+        <dt>ネットワーク / セキュリティ</dt>
+        <dd><ul class="tags">
+          <li><span class="mark exp"></span>Palo Alto / Cisco ASA</li>
+          <li><span class="mark exp"></span>Yamaha RTX</li>
+          <li><span class="mark exp"></span>Zscaler</li>
+          <li><span class="mark exp"></span>Zabbix</li>
+          <li><span class="mark exp"></span>Nmap</li>
+          <li><span class="mark exp"></span>Wireshark</li>
+          <li><span class="mark exp"></span>Nessus / Tripwire</li>
+          <li><span class="mark exp"></span>FireEye・FireMon・Gigamon・OpenDNS</li>
+          <li><span class="mark exp"></span>PCI DSS 監査対応</li>
+          <li>情報処理安全確保支援士領域の知見</li>
+        </ul></dd>
+        <dt>開発言語 / DevOps</dt>
+        <dd><ul class="tags">
+          <li><span class="mark exp"></span><span class="mark work"></span>Python</li>
+          <li><span class="mark exp"></span><span class="mark work"></span>PowerShell</li>
+          <li><span class="mark exp"></span>VBS</li>
+          <li><span class="mark exp"></span><span class="mark work"></span>Google Apps Script</li>
+          <li><span class="mark exp"></span><span class="mark work"></span>JavaScript</li>
+          <li><span class="mark exp"></span>PHP</li>
+          <li><span class="mark exp"></span><span class="mark work"></span>SQL（MySQL・PostgreSQL）</li>
+          <li><span class="mark work"></span>TypeScript / React</li>
+          <li><span class="mark work"></span>CI / 自動テスト（pytest・ansible-lint）</li>
+        </ul></dd>
       </dl>
+    </section>
+
+    <!-- 5. Works -->
+    <section id="works" aria-labelledby="works-h">
+      <p class="chapter latin">5　Works &amp; Gap Bridging</p>
+      <h2 id="works-h">実績・作品紹介</h2>
+      <p class="lead">既存製品の境界に残る「仕様の隙間」を、どの構成で、何で埋めたか。各事例の右側に、根拠となる職務経歴と公開リポジトリを並べています。</p>
+
+      <article class="case" id="case-1" aria-labelledby="c1-h">
+        <div class="case-head">
+          <span class="case-no">事例①</span>
+          <h3 id="c1-h">脆弱性管理・修復の自動化パイプライン<span class="approach">DevOps / IaC 的アプローチ</span></h3>
+        </div>
+        <div class="case-body">
+          <div>
+            <dl class="frame">
+              <dt>適用システム構成</dt>
+              <dd>Nessus 等の診断ツールは導入済みだが、検出後のパッチ適用・設定変更が手作業で個別対応になっている環境。</dd>
+              <dt>背景・課題</dt>
+              <dd>診断ツールが出すのは指摘（レポート）だけ。検出から修復までのタイムラグと作業負荷が、製品の間の隙間として残る。</dd>
+              <dt>実装機能</dt>
+              <dd><ul>
+                <li>日次の検出結果（CSV）を集計し、週次レポートとして関係者へ自動配信（GCP・GAS）</li>
+                <li>未適用端末を洗い出し、端末ごとの適用方法に合わせたバッチを作成・配布（VBS・JavaScript）</li>
+                <li>修復手順をAnsibleのプレイブックとして定義し、資産台帳から対象を選んで実行・記録（公開リポジトリ）</li>
+              </ul></dd>
+              <dt>アーキテクチャの帰結</dt>
+              <dd class="plan">端末の ChromeOS 化と、GCP（Cloud Run 等）への基盤集約により、手作業のOS修復・パッチ運用そのものをなくす。</dd>
+            </dl>
+            <p class="stack">Nessus・Tripwire・GCP・GAS・VBS・JavaScript・MECM・Ansible・Python</p>
+          </div>
+          <aside class="evidence" aria-label="事例①の根拠">
+            <figure><img src="assets/kitting.webp" width="1400" height="831" loading="lazy" alt="資産管理システムの一覧画面。状態別の台数と、機種・S/N・ホスト名・割り当て先が並ぶ。"></figure>
+            <h4>職務経歴</h4>
+            <ul>
+              <li><span class="y">2016–2017</span><span>Nessus・Tripwire による脆弱性検出サーバーの構築・運用、週次の集計・分析ツール</span></li>
+              <li><span class="y">2018</span><span>日次CSVをGCP上で集計し、週次レポートを自動配信（PM）</span></li>
+              <li><span class="y">2019–2020</span><span>PC 1,500台・サーバー50台・ネットワーク機器340台のパッチ検知と適用（リーダー）</span></li>
+              <li><span class="y">2021–2022</span><span>MECM 導入で全端末の Windows Update を定期化</span></li>
+            </ul>
+            <h4>公開リポジトリ</h4>
+            <ul class="repo">
+              <li><a href="https://github.com/mismd2026/pc-kitting-asset-manager">pc-kitting-asset-manager</a><small>Windows Update・セキュリティ設定をAnsibleでコード化。台帳に登録された端末だけを対象に実行し、出力を保存</small></li>
+            </ul>
+          </aside>
+        </div>
+      </article>
+
+      <article class="case" id="case-2" aria-labelledby="c2-h">
+        <div class="case-head">
+          <span class="case-no">事例②</span>
+          <h3 id="c2-h">複数ID基盤・SaaS間の権限同期統制<span class="approach">IAM 標準設計</span></h3>
+        </div>
+        <div class="case-body">
+          <div>
+            <dl class="frame">
+              <dt>適用システム構成</dt>
+              <dd>Active Directory（複数ドメイン）、Google Workspace、各種SaaS、プロキシが混在する大規模環境。</dd>
+              <dt>背景・課題</dt>
+              <dd>製品ごとの仕様差やライセンス制約により、退職・異動時の即時アクセス遮断や、特権IDの管理にセキュリティの隙間が生じる。</dd>
+              <dt>実装機能</dt>
+              <dd><ul>
+                <li>特権ID管理製品を選定・導入し、人事データとADアカウントを連携</li>
+                <li>OU・GPO の構造を標準化し、MECM エージェントや設定をポリシーで展開</li>
+                <li>Zscaler による二要素認証でリモート接続を統制</li>
+                <li>役割ごとの権限分離と、全操作の監査ログを持つ管理システム（公開リポジトリ）</li>
+              </ul></dd>
+              <dt>設計方針</dt>
+              <dd class="plan">AD の IAM 標準設計・OU 構造を基準に、GAS / Python で SaaS・クラウド間のアカウント状態を同期・監査し、製品の境界で遮断が遅れる隙間をなくす。</dd>
+            </dl>
+            <p class="stack">Active Directory・GPO・ManageEngine・Zscaler・Google Workspace・GAS・Python</p>
+          </div>
+          <aside class="evidence" aria-label="事例②の根拠">
+            <h4>職務経歴</h4>
+            <ul>
+              <li><span class="y">2009</span><span>ADポリシーによるPC管理・設定の一部自動化</span></li>
+              <li><span class="y">2020</span><span>COVID-19 対応のリモート環境、Zscaler で二要素認証</span></li>
+              <li><span class="y">2021</span><span>DC 集中管理への移行で全PCの情報を整理、変更用プログラム作成（VBS・Python）</span></li>
+              <li><span class="y">2021–2022</span><span>MECM エージェント配布のため AD ポリシーを追加・編集</span></li>
+              <li><span class="y">2023</span><span>AD 特権ID管理システム導入、AD-人事連携の構築</span></li>
+            </ul>
+            <h4>公開リポジトリ</h4>
+            <ul class="repo">
+              <li><a href="https://github.com/mismd2026/pc-kitting-asset-manager">pc-kitting-asset-manager</a><small>admin / operator / viewer / enroll の権限分離、トークンのハッシュ保存、全操作の監査ログ</small></li>
+              <li><a href="https://github.com/mismd2026/pc-lending-system">pc-lending-system</a><small>Google Workspace のアカウントで本人を判定し、役割ごとに操作を制限。編集できない監査ログ（GAS）</small></li>
+            </ul>
+          </aside>
+        </div>
+      </article>
+
+      <article class="case" id="case-3" aria-labelledby="c3-h">
+        <div class="case-head">
+          <span class="case-no">事例③</span>
+          <h3 id="c3-h">実践Webアプリケーション &amp; AI自動化実装<span class="approach">さくらんぼ算学習Webアプリ / ローカルAI・業務自動化の試作</span></h3>
+        </div>
+        <div class="case-body">
+          <div>
+            <dl class="frame">
+              <dt>適用システム構成</dt>
+              <dd>クラウドの開発・実行環境（Google AI Studio 等）と、データを社外に出せない業務向けのローカルLLM環境。</dd>
+              <dt>背景・課題</dt>
+              <dd>業務の判断や繰り返し作業を、仕様書の段階で止めずに、動くものとして短期間で検証したい。</dd>
+              <dt>実装機能</dt>
+              <dd><ul>
+                <li>小学生向けの「さくらんぼ算」ドリルを Google AI Studio で作成し、Webアプリとして公開</li>
+                <li>音声認識・ローカルLLM・音声合成をつなぎ、FAQ回答・AI回答・有人引き継ぎを振り分けるコールセンター基盤</li>
+                <li>話題調査から台本・ナレーション・編集・投稿までを1コマンドで実行する動画制作パイプライン</li>
+              </ul></dd>
+            </dl>
+            <p class="stack">Google AI Studio・React / TypeScript・Python・FastAPI・Ollama / Qwen・VOICEVOX・ffmpeg・Kubernetes / Helm</p>
+          </div>
+          <aside class="evidence" aria-label="事例③の根拠">
+            <h4>公開リポジトリ</h4>
+            <ul class="repo">
+              <li><a href="https://github.com/mismd2026/Skuranbo-zan">Skuranbo-zan</a><small>さくらんぼ算ドリル（Google AI Studio・React・TypeScript）</small></li>
+              <li><a href="https://github.com/mismd2026/ai-callcenter-ollama">ai-callcenter-ollama</a><small>社外のAIを使わない音声応対。AI接続先が社外なら起動しない設定、Kubernetes 上で外向き通信を遮断</small></li>
+              <li><a href="https://github.com/mismd2026/video-automation-pipeline">video-automation-pipeline</a><small>工程ごとの完了状態を記録し、失敗した工程から再開。投稿は非公開が初期値</small></li>
+            </ul>
+            <h4>職務経歴</h4>
+            <ul>
+              <li><span class="y">2009–2016</span><span>GAS・PHP による社内ツール（チケット管理、イントラ、価格比較サイト）を設計から運用まで担当</span></li>
+            </ul>
+          </aside>
+        </div>
+      </article>
+    </section>
+
+    <!-- 6. Vision -->
+    <section id="vision" aria-labelledby="vision-h">
+      <p class="chapter latin">6　Vision</p>
+      <h2 id="vision-h">今後の展望・自己PR</h2>
+      <p class="lead">Windows・オンプレミス・高額SaaSを積み上げた構造から、GCP・Google Workspace・ChromeOS を軸にしたフルクラウド＆ゼロトラストの構成へ統合する。</p>
+
+      <div class="arch" aria-labelledby="arch-h">
+        <div class="arch-head">
+          <h3 id="arch-h">目標とする構成</h3>
+          <ul class="legend" aria-label="凡例">
+            <li><span class="mark exp" aria-hidden="true"></span>職務経歴で担当</li>
+            <li><span class="mark work" aria-hidden="true"></span>公開リポジトリで実装</li>
+          </ul>
+        </div>
+        <div class="shift">
+          <div class="from"><b>現状によくある構成</b>Windows端末・オンプレミスのサーバー・製品ごとのSaaSを積み上げ、TCOと運用負荷が増え続ける</div>
+          <div class="arrow" aria-hidden="true">→</div>
+          <div class="to"><b>目標</b>ID・端末・アプリ・データをクラウドで統合し、構成をコードで管理する</div>
+        </div>
+        <div class="layers">
+          <div class="layer"><h4>アイデンティティ<small>境界の中心</small></h4>
+            <ul class="tags"><li>Cloud Identity / Google Workspace</li><li>多要素認証・パスキー</li><li><span class="mark exp"></span>AD 特権ID管理・人事連携</li><li><span class="mark exp"></span>Zscaler 二要素認証</li></ul></div>
+          <div class="layer"><h4>エンドポイント<small>端末</small></h4>
+            <ul class="tags"><li>ChromeOS</li><li>端末の状態確認（Endpoint Verification）</li><li><span class="mark exp"></span>MECM / SCCM</li><li><span class="mark work"></span>イメージ＋Ansible による標準化</li></ul></div>
+          <div class="layer"><h4>アクセス<small>場所で信用しない</small></h4>
+            <ul class="tags"><li>Identity-Aware Proxy（BeyondCorp）</li><li><span class="mark exp"></span>Palo Alto・Zscaler・Umbrella</li><li><span class="mark work"></span>管理経路の限定・外向き通信の遮断</li></ul></div>
+          <div class="layer"><h4>ワークロード<small>アプリ・サーバー</small></h4>
+            <ul class="tags"><li>Cloud Run</li><li><span class="mark exp"></span>Azure VMware Solution・ESXi</li><li><span class="mark work"></span>Docker・Kubernetes / Helm</li></ul></div>
+          <div class="layer"><h4>データ<small>最後に守るもの</small></h4>
+            <ul class="tags"><li><span class="mark exp"></span>Google Drive への移行</li><li><span class="mark exp"></span>PCI DSS のデータ保護</li><li><span class="mark work"></span>テナント分離・データを社外に出さない</li></ul></div>
+          <div class="layer ops"><h4>運用・統制<small>全層を横断</small></h4>
+            <ul class="tags"><li>Infrastructure as Code</li><li><span class="mark exp"></span>脆弱性診断・レポートの自動化</li><li><span class="mark exp"></span>セキュリティ監視機器の運用</li><li><span class="mark work"></span>CI による自動テスト・監査ログ</li></ul></div>
+        </div>
+      </div>
+
+      <div class="vision-text">
+        <div>
+          <h3>アーキテクチャ方針</h3>
+          <p>インフラの構成をコードで管理し（IaC）、開発と運用を同じパイプラインでつなぐ（DevOps）。変更はレビューと自動テストを通してから本番に反映し、同じ手順で何度でも再現できる状態を保つ。</p>
+          <p>2016年のクラウド比較、2022年の Azure 展開提案、2023年の AVS 化と Google Drive 移行で進めてきたクラウド移行を、ID・端末・アプリまで含めた統合に広げる。</p>
+        </div>
+        <div>
+          <h3>貢献</h3>
+          <ul class="pillars">
+            <li><b>実務の確実性</b>システム間の隙間をコードで確実に埋める。監査で問われる証跡は、運用の中で自然に残る形にする。</li>
+            <li><b>再現性と拡張性</b>GCP・IaC・AI を使い、手順を人から仕組みに移す。台数や拠点が増えても、同じ定義で展開できる。</li>
+            <li><b>コストと安全性の両立</b>5つの指標で構成を評価し、運用コストの削減と安全性を同時に満たす設計を選ぶ。</li>
+          </ul>
+        </div>
+      </div>
     </section>
   </main>
 </div>
 
 <footer>
   <div class="wrap">
-    <span>Mitsuaki Ishimoda　インフラ／セキュリティアーキテクト</span>
+    <span>石母田 光明　System Architect / IaC / DevOps</span>
     <span><a href="https://github.com/mismd2026">GitHub</a>　<a href="https://github.com/mismd2026/mismd2026.github.io">このサイトのソース</a></span>
   </div>
 </footer>
