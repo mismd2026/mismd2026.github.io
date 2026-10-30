@@ -412,7 +412,7 @@
               <tr><td class="when">2016.04–2017.10</td><td>脆弱性検出サーバー（Nessus・Tripwire、RHEL）の構築、週次レポートの集計・分析ツール作成<span class="after">導入後：診断結果の分析と対応</span></td><td class="role">構築・運用</td><td class="tl"><span class="track" role="img" aria-label="導入 2016.04–2017.10、以降は運用を継続"><span class="ops" style="left:64.98%;right:0"></span><span class="intro" style="left:56.96%;width:8.02%"></span></span></td><td class="case"><a href="#case-2">②</a></td></tr>
               <tr><td class="when">2016.03–2016.08</td><td>セキュリティ機器の導入（FireEye、Gigamon、Balabit、FireMon、OpenDNS）<span class="after">導入後：検知結果の確認と機器の運用</span></td><td class="role">基本設計・導入補佐・運用</td><td class="tl"><span class="track" role="img" aria-label="導入 2016.03–2016.08、以降は運用を継続"><span class="ops" style="left:59.07%;right:0"></span><span class="intro" style="left:56.54%;width:2.53%"></span></span></td><td class="case"><a href="#case-2">②</a></td></tr>
               <tr><td class="when">2014.07–2015.08</td><td>Zabbix による死活監視・ネットワーク負荷検知の構築<span class="after">導入後：ネットワーク監視の運用</span></td><td class="role">設計・構築・運用</td><td class="tl"><span class="track" role="img" aria-label="導入 2014.07–2015.08、以降は運用を継続"><span class="ops" style="left:54.01%;right:0"></span><span class="intro" style="left:48.10%;width:5.91%"></span></span></td><td class="case"></td></tr>
-              <tr><td class="when">2005–2016</td><td>社内システムの開発：業務引継ぎシステム（JSP）、発注（PO 発行）システム、機器管理台帳・資産登録システム（SKYSEA 導入前）、チケット管理・価格比較サイト（GAS・PHP）。Google Workspace 導入時（2010年頃）に全社向けの社内 Web ページを作成し、各部署がルールや決め事を発信できるようにした<span class="after">導入後：各システムの保守・改修</span></td><td class="role">設計・開発・運用</td><td class="tl"><span class="track" role="img" aria-label="導入 2005–2016、以降は運用を継続"><span class="ops" style="left:58.23%;right:0"></span><span class="intro" style="left:0.00%;width:58.23%"></span></span></td><td class="case"><a href="#case-2">②</a> <a href="#case-4">④</a></td></tr>
+              <tr><td class="when">2005–2016</td><td>社内システムの開発：業務引継ぎシステム（JSP）、<a href="https://github.com/mismd2026/po-issue-system-jsp">発注（PO 発行）システム</a>（Servlet / JSP で再現し公開）、機器管理台帳・資産登録システム（SKYSEA 導入前）、チケット管理・価格比較サイト（GAS・PHP）。Google Workspace 導入時（2010年頃）に全社向けの社内 Web ページを作成し、各部署がルールや決め事を発信できるようにした<span class="after">導入後：各システムの保守・改修</span></td><td class="role">設計・開発・運用</td><td class="tl"><span class="track" role="img" aria-label="導入 2005–2016、以降は運用を継続"><span class="ops" style="left:58.23%;right:0"></span><span class="intro" style="left:0.00%;width:58.23%"></span></span></td><td class="case"><a href="#case-2">②</a> <a href="#case-4">④</a></td></tr>
             </tbody>
           </table>
         </div>
@@ -492,7 +492,7 @@
           <li><span class="mark exp"></span><span class="mark work"></span>Google Apps Script</li>
           <li><span class="mark exp"></span><span class="mark work"></span>JavaScript</li>
           <li><span class="mark exp"></span>PHP</li>
-          <li><span class="mark exp"></span>Java（JSP）</li>
+          <li><span class="mark exp"></span><span class="mark work"></span>Java / JSP / Servlet</li>
           <li><span class="mark exp"></span><span class="mark work"></span>SQL（MySQL・PostgreSQL）</li>
           <li><span class="mark work"></span>TypeScript / React</li>
           <li><span class="mark work"></span>FastAPI・SQLAlchemy</li>
@@ -511,13 +511,13 @@
 
       <div class="process" aria-labelledby="proc-h">
         <h3 id="proc-h">開発の進め方</h3>
-        <p class="process-lead">キッティング・資産管理、コールセンター、動画制作、貸出管理の4つのリポジトリは、同じ流れで作っています。生成AIを開発環境に組み込み、企画から公開までを短いサイクルで回します。</p>
+        <p class="process-lead">キッティング・資産管理、コールセンター、動画制作、貸出管理、発注（PO 発行）の5つのリポジトリは、同じ流れで作っています。生成AIを開発環境に組み込み、企画から公開までを短いサイクルで回します。</p>
         <ol class="pipeline">
           <li><b>企画</b><span>業務の課題を、5つの指標で要件に落とす</span><small>各 README の「課題」「設計の判断」</small></li>
           <li><b>設計</b><span>構成図と判断理由を、コードと同じ場所に残す</span><small>Mermaid の構成図・状態遷移図</small></li>
           <li><b>実装</b><span>Python・TypeScript・GAS で機能を作る。AIのコーディング支援を使う</span><small>FastAPI・SQLAlchemy・React</small></li>
           <li><b>構成のコード化</b><span>サーバー・端末・デプロイ先の状態をコードで定義する</span><small>Ansible・Docker Compose・Helm</small></li>
-          <li><b>自動テスト・CI</b><span>変更のたびにテストと静的検査を自動で実行する</span><small>GitHub Actions・自動テスト計104件（pytest・Node）・ansible-lint</small></li>
+          <li><b>自動テスト・CI</b><span>変更のたびにテストと静的検査を自動で実行する</span><small>GitHub Actions・自動テスト計133件（pytest・Node・JUnit）・ansible-lint</small></li>
           <li><b>運用・計測</b><span>動かした結果を記録し、次の改善につなげる</span><small>ジョブ記録・監査ログ・メトリクス</small></li>
         </ol>
       </div>
@@ -681,9 +681,10 @@
                 <li>小学生向けの「さくらんぼ算」ドリルを Google AI Studio で作成し、Webアプリとして公開</li>
                 <li>音声認識・ローカルLLM・音声合成をつなぎ、FAQ回答・AI回答・有人引き継ぎを振り分けるコールセンター基盤</li>
                 <li>話題調査から台本・ナレーション・編集・投稿までを1コマンドで実行する動画制作パイプライン</li>
+                <li>前職で作った発注（PO 発行）システムを、当時と同じ Servlet / JSP 構成で再現。申請・二段階承認・PO番号の採番・注文書の印刷・検収・CSV出力まで</li>
               </ul></dd>
             </dl>
-            <p class="stack">Google AI Studio・React / TypeScript・Python・FastAPI・Ollama / Qwen・VOICEVOX・ffmpeg・Kubernetes / Helm</p>
+            <p class="stack">Google AI Studio・React / TypeScript・Python・FastAPI・Ollama / Qwen・VOICEVOX・ffmpeg・Kubernetes / Helm・Java（Servlet / JSP / JDBC）</p>
           </div>
           <aside class="evidence" aria-label="事例④の根拠">
             <h4>公開リポジトリ</h4>
@@ -691,6 +692,7 @@
               <li><a href="https://github.com/mismd2026/Skuranbo-zan">Skuranbo-zan</a><small>さくらんぼ算ドリル（Google AI Studio・React・TypeScript）</small></li>
               <li><a href="https://github.com/mismd2026/ai-callcenter-ollama">ai-callcenter-ollama</a><small>社外のAIを使わない音声応対。AI接続先が社外なら起動しない設定、Kubernetes 上で外向き通信を遮断</small></li>
               <li><a href="https://github.com/mismd2026/video-automation-pipeline">video-automation-pipeline</a><small>工程ごとの完了状態を記録し、失敗した工程から再開。投稿は非公開が初期値</small></li>
+              <li><a href="https://github.com/mismd2026/po-issue-system-jsp">po-issue-system-jsp</a><small>自分の申請は承認できない権限設計。同時に発行しても番号が重複・欠番しない採番（Servlet / JSP・SQLite）</small></li>
             </ul>
             <h4>職務経歴</h4>
             <ul>
