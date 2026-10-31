@@ -122,6 +122,21 @@
   .parallel h4 { font-size: 15px; margin: 0 0 6px; }
   .parallel ul { margin: 0; padding-left: 1.2em; font-size: 14px; }
   .parallel li { margin: 3px 0; }
+  .ph { display: inline-block; font-size: 11px; font-weight: 700; line-height: 1; padding: 3px 6px; margin-right: 6px; border-radius: 3px; vertical-align: 1px; white-space: nowrap; }
+  .ph-in { color: var(--sheet); background: var(--line); }
+  .ph-ops { color: var(--ink); background: color-mix(in srgb, var(--slate) 22%, transparent); }
+  .ph-kz { color: var(--sheet); background: var(--exp); }
+  .hist-lead .ph { margin: 0 2px; }
+  .cycle-box { margin-top: 12px; background: var(--sheet); border: 1px solid var(--rule); border-radius: 6px; padding: 14px 18px; }
+  .cycle-box h4 { font-size: 15px; margin: 0 0 6px; }
+  .cycle-box .sub { font-size: 14px; margin: 0 0 10px; max-width: 52rem; }
+  .cycle { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .cycle li { position: relative; font-size: 14px; line-height: 1.65; background: var(--line-soft); border-radius: 6px; padding: 10px 12px; }
+  .cycle li .ph { display: inline-block; margin-bottom: 6px; }
+  .cycle li span { display: block; }
+  .cycle li + li::before { content: "→"; position: absolute; left: -10px; top: 10px; transform: translateX(-50%); color: var(--slate); font-size: 13px; }
+  .cycle-box .map { margin: 10px 0 0; font-size: 13px; color: var(--slate); }
+  @media (max-width: 720px) { .cycle { grid-template-columns: 1fr; } .cycle li + li::before { content: "↓"; left: 50%; top: -12px; } }
   .history .note { font-size: 13px; color: var(--slate); margin: 10px 0 0; }
 
   /* 4. Skills */
@@ -326,12 +341,12 @@
           </dl>
           <h3>経歴・概要</h3>
           <p>コストコホールセールジャパンにて約20年間、ITインフラ・セキュリティ領域に従事。2024年12月からは株式会社グリーンフーズマネジメントシステムで、インフラチームのマネジメントとインフラ全体の刷新を担当。</p>
-          <p>大規模ネットワーク構築、サーバー移設、Active Directoryの標準化（IAM）、セキュリティ監査対応（PCI DSS等）から、Python / GAS / PowerShell / IaCを活用した自動化・システム統合までを、要件定義から導入後の運用まで一貫して担当。</p>
+          <p>大規模ネットワーク構築、サーバー移設、Active Directoryの標準化（IAM）、セキュリティ監査対応（PCI DSS等）を、導入から運用・改善まで一人で通して担当。運用の中で見つけた手作業や障害の原因を、スクリプトと配布基盤・構成管理で仕組みに変えてきた。1,500台超の端末への構成変更は、事前検証・段階展開・実行ログの日次集計で進め、1晩で約8割、約1週間で全台に適用した。</p>
           <p>最大約20名規模のプロジェクトでPM / PLを担当し、米国本社のチームとは英語で調整。会員カードのコード体系を米国と標準化し、日本の会員カードを米国でも使えるようにした。</p>
           <p>ヘルプデスク時代から業務システムを自作し、Windows XP・Me から 7 への移行では Sysprep イメージと自作の設定バッチで全店のPC設定を標準化した。</p>
           <h3>評価・設計軸</h3>
           <p>「信頼性・可用性」「性能・拡張性」「セキュリティ」「運用・保守性」「コスト」の5つの指標に基づいて構造を設計する。既存製品の境界にある仕様の隙間は自作コードやIaCで埋め、GCPへの統合を見据えた構成を組む。</p>
-          <p>今後は開発を仕事の中心に置き、企画から実装・自動テスト・運用までをコードで一貫して提供することを目指している。</p>
+          <p>今後は、この「導入 → 運用 → 改善」の繰り返しを IaC・CI/CD・自動テストで行う開発寄りの仕事を中心に置き、企画から実装・運用までをコードで一貫して提供することを目指している。</p>
         </div>
 
         <div class="axis">
@@ -371,48 +386,48 @@
         <h4 class="co">株式会社グリーンフーズマネジメントシステム（2024年12月〜現在）</h4>
         <div class="history-wrap">
           <table>
-            <thead><tr><th scope="col">内容</th><th scope="col">役割</th><th scope="col">関連</th></tr></thead>
+            <thead><tr><th scope="col">内容（導入 → 運用 → 改善）</th><th scope="col">役割</th><th scope="col">関連</th></tr></thead>
             <tbody>
-              <tr><td>年間支出を金額の大きい順に洗い出し、データセンター・ネットワーク費用を構成から見直し</td><td class="role">インフラチームのマネジメント</td><td class="case"><a href="#case-1">①</a></td></tr>
-              <tr><td>データセンターを NTT から OS1 へ移設（直接交渉、冗長性を確保した構成）</td><td class="role">計画・交渉</td><td class="case"><a href="#case-1">①</a></td></tr>
-              <tr><td>本社・各拠点の回線をアルテリアで基幹部分から刷新、ネットワーク管理を SASE へ移行</td><td class="role">計画・導入</td><td class="case"><a href="#case-1">①</a></td></tr>
-              <tr><td>オンプレ AD から Entra ID へ移行（Microsoft 365 の SSO、MFA、Hybrid Entra ID Join）、SAML 認証で各 SaaS と連携</td><td class="role">設計・導入</td><td class="case"><a href="#case-1">①</a> <a href="#case-3">③</a></td></tr>
-              <tr><td>障害点だったプロキシを移設、本社 LAN を根元から再敷設し無線化</td><td class="role">設計・導入</td><td class="case"><a href="#case-1">①</a></td></tr>
-              <tr><td>PC設定を自動化し、チームの業務を個別の設定作業からプロファイル管理へ移行</td><td class="role">チームマネジメント</td><td class="case"><a href="#case-1">①</a> <a href="#case-2">②</a></td></tr>
+              <tr><td><b class="ph ph-kz">改善</b>年間支出を金額の大きい順に洗い出し、データセンター・ネットワーク費用を構成から見直し</td><td class="role">インフラチームのマネジメント</td><td class="case"><a href="#case-1">①</a></td></tr>
+              <tr><td><b class="ph ph-in">導入</b>データセンターを NTT から OS1 へ移設（直接交渉、冗長性を確保した構成）</td><td class="role">計画・交渉</td><td class="case"><a href="#case-1">①</a></td></tr>
+              <tr><td><b class="ph ph-in">導入</b>本社・各拠点の回線をアルテリアで基幹部分から刷新、ネットワーク管理を SASE へ移行</td><td class="role">計画・導入</td><td class="case"><a href="#case-1">①</a></td></tr>
+              <tr><td><b class="ph ph-in">導入</b>オンプレ AD から Entra ID へ移行（Microsoft 365 の SSO、MFA、Hybrid Entra ID Join）、SAML 認証で各 SaaS と連携</td><td class="role">設計・導入</td><td class="case"><a href="#case-1">①</a> <a href="#case-3">③</a></td></tr>
+              <tr><td><b class="ph ph-kz">改善</b>障害点だったプロキシを移設、本社 LAN を根元から再敷設し無線化</td><td class="role">設計・導入</td><td class="case"><a href="#case-1">①</a></td></tr>
+              <tr><td><b class="ph ph-kz">改善</b>PC設定を自動化し、チームの業務を個別の設定作業からプロファイル管理へ移行</td><td class="role">チームマネジメント</td><td class="case"><a href="#case-1">①</a> <a href="#case-2">②</a></td></tr>
               <tr><td>電話対応の体制について、推奨構成を複数案提案（総務部門の管轄。現在検討中で、相談があれば支援する体制）</td><td class="role">提案</td><td class="case"><a href="#case-1">①</a></td></tr>
               <tr><td>IIS で公開していた HTML ベースの旧 Web サイトを WordPress へ移す計画を支援し、担当者に仕組みと使い方を指導</td><td class="role">計画支援・指導</td><td class="case"><a href="#case-1">①</a></td></tr>
             </tbody>
           </table>
         </div>
         <h4 class="co">コストコホールセールジャパン（2004年12月〜2024年）</h4>
-        <p class="hist-lead">期間は導入プロジェクトの期間です。多くはその後も退職まで運用を担当し、並行して複数のシステムを受け持っていました。</p>
+        <p class="hist-lead">各プロジェクトを<b class="ph ph-in">導入</b>→<b class="ph ph-ops">運用</b>→<b class="ph ph-kz">改善</b>の順に記載しています。期間は導入プロジェクトの期間で、多くはその後も退職まで運用を担当しました。改善は、運用の中で見つけた問題を仕組みで直したものです。</p>
         <ul class="legend tl-legend" aria-label="タイムラインの凡例">
           <li><span class="sw intro" aria-hidden="true"></span>導入プロジェクト</li>
-          <li><span class="sw ops" aria-hidden="true"></span>導入後の運用（退職まで）</li>
+          <li><span class="sw ops" aria-hidden="true"></span>導入後の運用・改善（退職まで）</li>
         </ul>
         <div class="history-wrap">
           <table>
-            <thead><tr><th scope="col">導入期間</th><th scope="col">プロジェクトと導入後の運用</th><th scope="col">役割</th><th scope="col" class="tl"><span class="ticks" aria-hidden="true"><span style="left:5.06%">2006</span><span style="left:25.32%">2010</span><span style="left:45.57%">2014</span><span style="left:65.82%">2018</span><span style="left:86.08%">2022</span></span><span class="sr">タイムライン</span></th><th scope="col">関連</th></tr></thead>
+            <thead><tr><th scope="col">導入期間</th><th scope="col">導入 → 運用 → 改善</th><th scope="col">役割</th><th scope="col" class="tl"><span class="ticks" aria-hidden="true"><span style="left:5.06%">2006</span><span style="left:25.32%">2010</span><span style="left:45.57%">2014</span><span style="left:65.82%">2018</span><span style="left:86.08%">2022</span></span><span class="sr">タイムライン</span></th><th scope="col">関連</th></tr></thead>
             <tbody>
-              <tr><td class="when">2023.10–2024.08</td><td>ファイルサーバーの Google Drive 化（調査・移行計画・リプリケートサーバー構築）</td><td class="role">構築・運用</td><td class="tl"><span class="track" role="img" aria-label="導入 2023.10–2024.08"><span class="intro" style="left:94.94%;width:4.64%"></span></span></td><td class="case"><a href="#vision">Vision</a></td></tr>
-              <tr><td class="when">2023.02–2023.11</td><td>サーバー群の Azure VMware Solution（AVS）化：ベンダー選定・PoC（その後、方針変更により中止）</td><td class="role">PM（7名）</td><td class="tl"><span class="track" role="img" aria-label="導入 2023.02–2023.11"><span class="intro" style="left:91.56%;width:4.22%"></span></span></td><td class="case"><a href="#vision">Vision</a></td></tr>
-              <tr><td class="when">2023.02–2023.10</td><td>AD 特権ID管理システム導入（ManageEngine 選定・導入、AD-人事連携の構築）<span class="after">導入後：特権IDの棚卸しと権限の運用</span></td><td class="role">構築・運用</td><td class="tl"><span class="track" role="img" aria-label="導入 2023.02–2023.10、以降は運用を継続"><span class="ops" style="left:95.36%;right:0"></span><span class="intro" style="left:91.56%;width:3.80%"></span></span></td><td class="case"><a href="#case-3">③</a></td></tr>
-              <tr><td class="when">2022.05–2022.10</td><td>Azure・Microsoft 365 の導入を提案。見積・中長期計画を米国と共有し、グループのIT戦略として採用。Microsoft 365 E5 を一部に導入<span class="after">導入後：Entra ID でのライセンス管理。Chromebook から Citrix DaaS / Citrix Workspace（HTML5）経由で Windows 仮想デスクトップに接続する VDI を一部で実施</span></td><td class="role">発案・資料作成・導入</td><td class="tl"><span class="track" role="img" aria-label="導入 2022.05–2022.10、以降は運用を継続"><span class="ops" style="left:90.30%;right:0"></span><span class="intro" style="left:87.76%;width:2.53%"></span></span></td><td class="case"><a href="#vision">Vision</a></td></tr>
-              <tr><td class="when">2022.02</td><td>PCI DSS 監査要件の対応（拠点調査、Nmap・Wireshark）、プライバシーポリシーの取り扱い調査<span class="after">導入後：監査項目の継続的な確認と拠点への周知</span></td><td class="role">運用</td><td class="tl"><span class="track" role="img" aria-label="導入 2022.02、以降は運用を継続"><span class="ops" style="left:87.40%;right:0"></span><span class="intro" style="left:86.50%;width:0.90%"></span></span></td><td class="case"><a href="#case-2">②</a></td></tr>
-              <tr><td class="when">2021.05–2022.02</td><td>MECM（SCCM）導入：メインサーバー構築、拠点DP配布、GPOによるエージェント展開<span class="after">導入後：全端末の Windows Update 定期適用、未適用端末の特定と分析</span></td><td class="role">構築・運用（10名）</td><td class="tl"><span class="track" role="img" aria-label="導入 2021.05–2022.02、以降は運用を継続"><span class="ops" style="left:86.92%;right:0"></span><span class="intro" style="left:82.70%;width:4.22%"></span></span></td><td class="case"><a href="#case-2">②</a> <a href="#case-3">③</a></td></tr>
-              <tr><td class="when">2021.01–2021.04</td><td>本社集中管理からデータセンター集中管理へ移行。全PCの情報整理と変更用プログラム作成（VBS・Python）<span class="after">導入後：端末情報の維持管理</span></td><td class="role">ベンダー管理（17名）</td><td class="tl"><span class="track" role="img" aria-label="導入 2021.01–2021.04、以降は運用を継続"><span class="ops" style="left:82.70%;right:0"></span><span class="intro" style="left:81.01%;width:1.69%"></span></span></td><td class="case"><a href="#case-3">③</a></td></tr>
-              <tr><td class="when">2020.08–2020.12</td><td>米国セキュリティチーム構成のセキュリティ機器群（セキュリティスイート、サーバー20数台）をデータセンターに設置・接続<span class="after">導入後：解析結果のレポートをもとに、脆弱性への対応、障害点の解消、機能の削除・アップデートを継続</span></td><td class="role">ベンダー管理・運用</td><td class="tl"><span class="track" role="img" aria-label="導入 2020.08–2020.12、以降は運用を継続"><span class="ops" style="left:81.01%;right:0"></span><span class="intro" style="left:78.90%;width:2.11%"></span></span></td><td class="case"><a href="#case-2">②</a></td></tr>
-              <tr><td class="when">2020.03–2020.07</td><td>海外の基幹システムを日本のデータセンターへ移設（バックアップ設計・DNS・クライアント設定）<span class="after">導入後：クライアント側の設定とサポート</span></td><td class="role">ベンダー管理</td><td class="tl"><span class="track" role="img" aria-label="導入 2020.03–2020.07、以降は運用を継続"><span class="ops" style="left:78.90%;right:0"></span><span class="intro" style="left:76.79%;width:2.11%"></span></span></td><td class="case"></td></tr>
-              <tr><td class="when">2020.02–2020.03</td><td>COVID-19 対応のリモート環境構築、Zscaler による二要素認証<span class="after">導入後：リモート接続環境の運用</span></td><td class="role">構築</td><td class="tl"><span class="track" role="img" aria-label="導入 2020.02–2020.03、以降は運用を継続"><span class="ops" style="left:77.27%;right:0"></span><span class="intro" style="left:76.37%;width:0.90%"></span></span></td><td class="case"><a href="#case-3">③</a></td></tr>
-              <tr><td class="when">2019.10–2020.01</td><td>セキュリティパッチ管理の仕組みを導入：PC 1,500台・サーバー50台・ネットワーク機器340台<span class="after">導入後：未適用端末の洗い出しと適用を継続</span></td><td class="role">リーダー（8名）</td><td class="tl"><span class="track" role="img" aria-label="導入 2019.10–2020.01、以降は運用を継続"><span class="ops" style="left:76.37%;right:0"></span><span class="intro" style="left:74.68%;width:1.69%"></span></span></td><td class="case"><a href="#case-2">②</a></td></tr>
-              <tr><td class="when">2019.06–2019.10</td><td>ファイアウォール切り替え（Cisco ASA → Palo Alto）<span class="after">導入後：ルールの運用・変更対応</span></td><td class="role">ベンダー管理</td><td class="tl"><span class="track" role="img" aria-label="導入 2019.06–2019.10、以降は運用を継続"><span class="ops" style="left:75.11%;right:0"></span><span class="intro" style="left:73.00%;width:2.11%"></span></span></td><td class="case"></td></tr>
-              <tr><td class="when">2018.01–2018.10</td><td>仮想基盤上に脆弱性検出システムを導入。日次CSVをGCP上で集計し、週次レポートを自動配信（GAS）<span class="after">導入後：週次レポートの分析と対応の割り振り</span></td><td class="role">PM</td><td class="tl"><span class="track" role="img" aria-label="導入 2018.01–2018.10、以降は運用を継続"><span class="ops" style="left:70.04%;right:0"></span><span class="intro" style="left:65.82%;width:4.22%"></span></span></td><td class="case"><a href="#case-2">②</a></td></tr>
-              <tr><td class="when">2017.01–2018.01</td><td>データセンター設置、本社サーバー16台を移設（VMware ESXi 6.5 / vCenter）<span class="after">導入後：仮想基盤とサーバーの運用</span></td><td class="role">ベンダー管理・予算管理</td><td class="tl"><span class="track" role="img" aria-label="導入 2017.01–2018.01、以降は運用を継続"><span class="ops" style="left:66.24%;right:0"></span><span class="intro" style="left:60.76%;width:5.49%"></span></span></td><td class="case"></td></tr>
-              <tr><td class="when">2016.08–2017.10</td><td>データセンターかクラウド（Azure・AWS・GCP）かを5社比較で検討。AWS 案と並べて GCP を推奨し、GCP 上に社内用 Web サーバーを構築<span class="after">導入後：社内用 Web サーバー（GCP）の運用</span></td><td class="role">PM</td><td class="tl"><span class="track" role="img" aria-label="導入 2016.08–2017.10、以降は運用を継続"><span class="ops" style="left:64.98%;right:0"></span><span class="intro" style="left:58.65%;width:6.33%"></span></span></td><td class="case"><a href="#vision">Vision</a></td></tr>
-              <tr><td class="when">2016.04–2017.10</td><td>脆弱性検出サーバー（Nessus・Tripwire、RHEL）の構築、週次レポートの集計・分析ツール作成<span class="after">導入後：診断結果の分析と対応</span></td><td class="role">構築・運用</td><td class="tl"><span class="track" role="img" aria-label="導入 2016.04–2017.10、以降は運用を継続"><span class="ops" style="left:64.98%;right:0"></span><span class="intro" style="left:56.96%;width:8.02%"></span></span></td><td class="case"><a href="#case-2">②</a></td></tr>
-              <tr><td class="when">2016.03–2016.08</td><td>セキュリティ機器の導入（FireEye、Gigamon、Balabit、FireMon、OpenDNS）<span class="after">導入後：検知結果の確認と機器の運用</span></td><td class="role">基本設計・導入補佐・運用</td><td class="tl"><span class="track" role="img" aria-label="導入 2016.03–2016.08、以降は運用を継続"><span class="ops" style="left:59.07%;right:0"></span><span class="intro" style="left:56.54%;width:2.53%"></span></span></td><td class="case"><a href="#case-2">②</a></td></tr>
-              <tr><td class="when">2014.07–2015.08</td><td>Zabbix による死活監視・ネットワーク負荷検知の構築<span class="after">導入後：ネットワーク監視の運用</span></td><td class="role">設計・構築・運用</td><td class="tl"><span class="track" role="img" aria-label="導入 2014.07–2015.08、以降は運用を継続"><span class="ops" style="left:54.01%;right:0"></span><span class="intro" style="left:48.10%;width:5.91%"></span></span></td><td class="case"></td></tr>
-              <tr><td class="when">2005–2016</td><td>社内システムの開発：業務引継ぎシステム（JSP）、<a href="https://github.com/mismd2026/po-issue-system-jsp">発注（PO 発行）システム</a>（Servlet / JSP で再現し公開）、機器管理台帳・資産登録システム（SKYSEA 導入前）、チケット管理・価格比較サイト（GAS・PHP）。Google Workspace 導入時（2010年頃）に全社向けの社内 Web ページを作成し、各部署がルールや決め事を発信できるようにした<span class="after">導入後：各システムの保守・改修</span></td><td class="role">設計・開発・運用</td><td class="tl"><span class="track" role="img" aria-label="導入 2005–2016、以降は運用を継続"><span class="ops" style="left:58.23%;right:0"></span><span class="intro" style="left:0.00%;width:58.23%"></span></span></td><td class="case"><a href="#case-2">②</a> <a href="#case-4">④</a></td></tr>
+              <tr><td class="when">2023.10–2024.08</td><td><b class="ph ph-in">導入</b>ファイルサーバーの Google Drive 化（調査・移行計画・リプリケートサーバー構築）</td><td class="role">構築・運用</td><td class="tl"><span class="track" role="img" aria-label="導入 2023.10–2024.08"><span class="intro" style="left:94.94%;width:4.64%"></span></span></td><td class="case"><a href="#vision">Vision</a></td></tr>
+              <tr><td class="when">2023.02–2023.11</td><td><b class="ph ph-in">導入</b>サーバー群の Azure VMware Solution（AVS）化：ベンダー選定・PoC（その後、方針変更により中止）</td><td class="role">PM（7名）</td><td class="tl"><span class="track" role="img" aria-label="導入 2023.02–2023.11"><span class="intro" style="left:91.56%;width:4.22%"></span></span></td><td class="case"><a href="#vision">Vision</a></td></tr>
+              <tr><td class="when">2023.02–2023.10</td><td><b class="ph ph-in">導入</b>AD 特権ID管理システム導入（ManageEngine 選定・導入、AD-人事連携の構築）<span class="after"><b class="ph ph-ops">運用</b>特権IDの棚卸しと権限の運用</span></td><td class="role">構築・運用</td><td class="tl"><span class="track" role="img" aria-label="導入 2023.02–2023.10、以降は運用を継続"><span class="ops" style="left:95.36%;right:0"></span><span class="intro" style="left:91.56%;width:3.80%"></span></span></td><td class="case"><a href="#case-3">③</a></td></tr>
+              <tr><td class="when">2022.05–2022.10</td><td><b class="ph ph-in">導入</b>Azure・Microsoft 365 の導入を提案。見積・中長期計画を米国と共有し、グループのIT戦略として採用。Microsoft 365 E5 を一部に導入<span class="after"><b class="ph ph-ops">運用</b>Entra ID でのライセンス管理。Chromebook から Citrix DaaS / Citrix Workspace（HTML5）経由で Windows 仮想デスクトップに接続する VDI を一部で実施</span></td><td class="role">発案・資料作成・導入</td><td class="tl"><span class="track" role="img" aria-label="導入 2022.05–2022.10、以降は運用を継続"><span class="ops" style="left:90.30%;right:0"></span><span class="intro" style="left:87.76%;width:2.53%"></span></span></td><td class="case"><a href="#vision">Vision</a></td></tr>
+              <tr><td class="when">2022.02</td><td><b class="ph ph-in">導入</b>PCI DSS 監査要件の対応（拠点調査、Nmap・Wireshark）、プライバシーポリシーの取り扱い調査<span class="after"><b class="ph ph-ops">運用</b>監査項目の継続的な確認と拠点への周知</span></td><td class="role">運用</td><td class="tl"><span class="track" role="img" aria-label="導入 2022.02、以降は運用を継続"><span class="ops" style="left:87.40%;right:0"></span><span class="intro" style="left:86.50%;width:0.90%"></span></span></td><td class="case"><a href="#case-2">②</a></td></tr>
+              <tr><td class="when">2021.05–2022.02</td><td><b class="ph ph-in">導入</b>MECM（SCCM）導入：メインサーバー構築、拠点DP配布、GPOによるエージェント展開<span class="after"><b class="ph ph-ops">運用</b>全端末の Windows Update 定期適用、未適用端末の特定と分析</span><span class="after"><b class="ph ph-kz">改善</b>未適用端末を、端末ごとの適用方法に合わせたバッチ（VBS・JavaScript）で解消</span></td><td class="role">構築・運用（10名）</td><td class="tl"><span class="track" role="img" aria-label="導入 2021.05–2022.02、以降は運用を継続"><span class="ops" style="left:86.92%;right:0"></span><span class="intro" style="left:82.70%;width:4.22%"></span></span></td><td class="case"><a href="#case-2">②</a> <a href="#case-3">③</a></td></tr>
+              <tr><td class="when">2021.01–2021.04</td><td><b class="ph ph-in">導入</b>本社集中管理からデータセンター集中管理へ移行。全PCの情報整理と変更用プログラム作成（VBS・Python）<span class="after"><b class="ph ph-ops">運用</b>端末情報の維持管理</span></td><td class="role">ベンダー管理（17名）</td><td class="tl"><span class="track" role="img" aria-label="導入 2021.01–2021.04、以降は運用を継続"><span class="ops" style="left:82.70%;right:0"></span><span class="intro" style="left:81.01%;width:1.69%"></span></span></td><td class="case"><a href="#case-3">③</a></td></tr>
+              <tr><td class="when">2020.08–2020.12</td><td><b class="ph ph-in">導入</b>米国セキュリティチーム構成のセキュリティ機器群（セキュリティスイート、サーバー20数台）をデータセンターに設置・接続<span class="after"><b class="ph ph-ops">運用</b>解析結果のレポートを確認し、対応を判断</span><span class="after"><b class="ph ph-kz">改善</b>レポートで見つけた脆弱性・障害点を解消し、不要な機能の削除やアップデートを継続</span></td><td class="role">ベンダー管理・運用</td><td class="tl"><span class="track" role="img" aria-label="導入 2020.08–2020.12、以降は運用を継続"><span class="ops" style="left:81.01%;right:0"></span><span class="intro" style="left:78.90%;width:2.11%"></span></span></td><td class="case"><a href="#case-2">②</a></td></tr>
+              <tr><td class="when">2020.03–2020.07</td><td><b class="ph ph-in">導入</b>海外の基幹システムを日本のデータセンターへ移設（バックアップ設計・DNS・クライアント設定）<span class="after"><b class="ph ph-ops">運用</b>クライアント側の設定とサポート</span></td><td class="role">ベンダー管理</td><td class="tl"><span class="track" role="img" aria-label="導入 2020.03–2020.07、以降は運用を継続"><span class="ops" style="left:78.90%;right:0"></span><span class="intro" style="left:76.79%;width:2.11%"></span></span></td><td class="case"></td></tr>
+              <tr><td class="when">2020.02–2020.03</td><td><b class="ph ph-in">導入</b>COVID-19 対応のリモート環境構築、Zscaler による二要素認証<span class="after"><b class="ph ph-ops">運用</b>リモート接続環境の運用</span></td><td class="role">構築</td><td class="tl"><span class="track" role="img" aria-label="導入 2020.02–2020.03、以降は運用を継続"><span class="ops" style="left:77.27%;right:0"></span><span class="intro" style="left:76.37%;width:0.90%"></span></span></td><td class="case"><a href="#case-3">③</a></td></tr>
+              <tr><td class="when">2019.10–2020.01</td><td><b class="ph ph-in">導入</b>セキュリティパッチ管理の仕組みを導入：PC 1,500台・サーバー50台・ネットワーク機器340台<span class="after"><b class="ph ph-ops">運用</b>未適用端末の洗い出しと適用を継続</span><span class="after"><b class="ph ph-kz">改善</b>事前検証・段階展開・実行ログの日次集計で展開する手順を確立（下記「1,500台超の端末への構成変更」）</span></td><td class="role">リーダー（8名）</td><td class="tl"><span class="track" role="img" aria-label="導入 2019.10–2020.01、以降は運用を継続"><span class="ops" style="left:76.37%;right:0"></span><span class="intro" style="left:74.68%;width:1.69%"></span></span></td><td class="case"><a href="#case-2">②</a></td></tr>
+              <tr><td class="when">2019.06–2019.10</td><td><b class="ph ph-in">導入</b>ファイアウォール切り替え（Cisco ASA → Palo Alto）<span class="after"><b class="ph ph-ops">運用</b>ルールの運用・変更対応</span></td><td class="role">ベンダー管理</td><td class="tl"><span class="track" role="img" aria-label="導入 2019.06–2019.10、以降は運用を継続"><span class="ops" style="left:75.11%;right:0"></span><span class="intro" style="left:73.00%;width:2.11%"></span></span></td><td class="case"></td></tr>
+              <tr><td class="when">2018.01–2018.10</td><td><b class="ph ph-in">導入</b>仮想基盤上に脆弱性検出システムを導入。日次CSVをGCP上で集計し、週次レポートを自動配信（GAS）<span class="after"><b class="ph ph-ops">運用</b>週次レポートの分析と対応の割り振り</span></td><td class="role">PM</td><td class="tl"><span class="track" role="img" aria-label="導入 2018.01–2018.10、以降は運用を継続"><span class="ops" style="left:70.04%;right:0"></span><span class="intro" style="left:65.82%;width:4.22%"></span></span></td><td class="case"><a href="#case-2">②</a></td></tr>
+              <tr><td class="when">2017.01–2018.01</td><td><b class="ph ph-in">導入</b>データセンター設置、本社サーバー16台を移設（VMware ESXi 6.5 / vCenter）<span class="after"><b class="ph ph-ops">運用</b>仮想基盤とサーバーの運用</span></td><td class="role">ベンダー管理・予算管理</td><td class="tl"><span class="track" role="img" aria-label="導入 2017.01–2018.01、以降は運用を継続"><span class="ops" style="left:66.24%;right:0"></span><span class="intro" style="left:60.76%;width:5.49%"></span></span></td><td class="case"></td></tr>
+              <tr><td class="when">2016.08–2017.10</td><td><b class="ph ph-in">導入</b>データセンターかクラウド（Azure・AWS・GCP）かを5社比較で検討。AWS 案と並べて GCP を推奨し、GCP 上に社内用 Web サーバーを構築<span class="after"><b class="ph ph-ops">運用</b>社内用 Web サーバー（GCP）の運用</span></td><td class="role">PM</td><td class="tl"><span class="track" role="img" aria-label="導入 2016.08–2017.10、以降は運用を継続"><span class="ops" style="left:64.98%;right:0"></span><span class="intro" style="left:58.65%;width:6.33%"></span></span></td><td class="case"><a href="#vision">Vision</a></td></tr>
+              <tr><td class="when">2016.04–2017.10</td><td><b class="ph ph-in">導入</b>脆弱性検出サーバー（Nessus・Tripwire、RHEL）の構築、週次レポートの集計・分析ツール作成<span class="after"><b class="ph ph-ops">運用</b>診断結果の分析と対応</span><span class="after"><b class="ph ph-kz">改善</b>2018年に、日次CSVの集計と週次レポートの配信を自動化（GCP・GAS）</span></td><td class="role">構築・運用</td><td class="tl"><span class="track" role="img" aria-label="導入 2016.04–2017.10、以降は運用を継続"><span class="ops" style="left:64.98%;right:0"></span><span class="intro" style="left:56.96%;width:8.02%"></span></span></td><td class="case"><a href="#case-2">②</a></td></tr>
+              <tr><td class="when">2016.03–2016.08</td><td><b class="ph ph-in">導入</b>セキュリティ機器の導入（FireEye、Gigamon、Balabit、FireMon、OpenDNS）<span class="after"><b class="ph ph-ops">運用</b>検知結果の確認と機器の運用</span></td><td class="role">基本設計・導入補佐・運用</td><td class="tl"><span class="track" role="img" aria-label="導入 2016.03–2016.08、以降は運用を継続"><span class="ops" style="left:59.07%;right:0"></span><span class="intro" style="left:56.54%;width:2.53%"></span></span></td><td class="case"><a href="#case-2">②</a></td></tr>
+              <tr><td class="when">2014.07–2015.08</td><td><b class="ph ph-in">導入</b>Zabbix による死活監視・ネットワーク負荷検知の構築<span class="after"><b class="ph ph-ops">運用</b>ネットワーク監視の運用</span></td><td class="role">設計・構築・運用</td><td class="tl"><span class="track" role="img" aria-label="導入 2014.07–2015.08、以降は運用を継続"><span class="ops" style="left:54.01%;right:0"></span><span class="intro" style="left:48.10%;width:5.91%"></span></span></td><td class="case"></td></tr>
+              <tr><td class="when">2005–2016</td><td><b class="ph ph-in">導入</b>社内システムの開発：業務引継ぎシステム（JSP）、<a href="https://github.com/mismd2026/po-issue-system-jsp">発注（PO 発行）システム</a>（Servlet / JSP で再現し公開）、機器管理台帳・資産登録システム（SKYSEA 導入前）、チケット管理・価格比較サイト（GAS・PHP）。Google Workspace 導入時（2010年頃）に全社向けの社内 Web ページを作成し、各部署がルールや決め事を発信できるようにした<span class="after"><b class="ph ph-ops">運用</b>各システムの保守・改修</span></td><td class="role">設計・開発・運用</td><td class="tl"><span class="track" role="img" aria-label="導入 2005–2016、以降は運用を継続"><span class="ops" style="left:58.23%;right:0"></span><span class="intro" style="left:0.00%;width:58.23%"></span></span></td><td class="case"><a href="#case-2">②</a> <a href="#case-4">④</a></td></tr>
             </tbody>
           </table>
         </div>
@@ -425,14 +440,27 @@
             <li>入社初期（2005〜2013年）はヘルプデスクとして、PCの受発注・設定・設置、POS の障害対応・設置、ネットワーク設定のやり直し、ネットワークとサーバーのインシデント対応を担当</li>
           </ul>
         </div>
+        <div class="cycle-box">
+          <h4>1,500台超の端末への構成変更の展開</h4>
+          <p class="sub">AS400 の移設・刷新に伴うセッション設定の張り替え、DNS の変更とキャッシュのフラッシュ、脆弱性対応のパッチ適用、業務プログラムの入れ替え（サイレントインストール）。自作バッチと配布基盤（SKYSEA・MECM・AD のグループポリシー）で、全拠点の端末に繰り返し実施した。</p>
+          <ol class="cycle">
+            <li><b class="ph ph-in">導入</b><span>配布前にテストし、数台で効果を実証。利用者が気づかないまま変更だけが適用される形を基本にした。利用者の操作が必要な変更は、手順書と実施日を事前に周知し、PC入れ替えなど大きな変更と時期を合わせ、適用に失敗しても業務を続けられ、復旧もできる状態を整えてから配布した</span></li>
+            <li><b class="ph ph-ops">運用</b><span>小グループごとに順に展開。各端末の実行ログをファイルサーバーに集約し、集計スクリプトで毎日の成功・失敗を報告した。1晩で約8割に適用し、残りは追加配信で解消、最後の100台前後は手作業で確認して、約1週間で全台を完了</span></li>
+            <li><b class="ph ph-kz">改善</b><span>失敗に見えた端末の多くは、変更自体は成功しており、原因は結果を報告する仕組みの側にあった。展開そのものより、結果を正しく測る仕組みが要になると学び、この「検証 → 段階展開 → 日次集計」の流れを以降の変更にも使った</span></li>
+          </ol>
+          <p class="map">DevOps・SRE の言葉では：事前検証・カナリア展開 / 段階的ロールアウト / 無停止での変更適用 / 展開結果の監視 / ロールバック</p>
+        </div>
+        <div class="cycle-box">
+          <h4>Windows XP・Me から 7 への移行と、PC設定バッチ</h4>
+          <ol class="cycle">
+            <li><b class="ph ph-in">導入</b><span>店舗ごとにばらばらだった IP アドレスを整理し、第4オクテットを役職ごとに固定して、IP だけで誰の PC か分かるようにした。Sysprep で作ったイメージを各店に配置し、Ansible のような道具がまだなかったため、bat と PowerShell で PC 設定バッチを自作</span></li>
+            <li><b class="ph ph-ops">運用</b><span>この設定バッチを、その後の倉庫店オープン時に使う臨時メンバーシップ受付用ノートPC（約200台）の準備に使い回した</span></li>
+            <li><b class="ph ph-kz">改善</b><span>1台あたり約10分かかっていた設定が1分以下になり、複数のUSBで同時に進めることで、全体ではさらに何倍も効率化。設置・設定時の現場作業のミスも減った</span></li>
+          </ol>
+        </div>
         <div class="origin">
           <h4>会員カードのコード標準化</h4>
           <p>会員カードはそれまで国ごとに分かれ、日本のカードは米国では使えなかった。日本でカードに磁気コードを導入する機会に、米国のPOS担当と直接相談してコード体系を標準化し、スワイプするだけで米国でも使えるようにした。日本の会員カードが国をまたいで使えるようになった。</p>
-        </div>
-        <div class="origin">
-          <h4>Windows 7 への移行</h4>
-          <p>Windows XP・Me から Windows 7 への入れ替えで、店舗ごとにばらばらだった IP アドレスを整理し、第4オクテットを役職ごとに固定して、IP だけで誰の PC か分かるようにした。Sysprep で作ったイメージを各店に配置し、Ansible のような道具がまだなかったため、bat と PowerShell で PC 設定バッチを自作。設置・設定時の現場作業のミスを減らし、作業時間を短縮した。</p>
-          <p>この設定バッチは、その後の倉庫店オープン時に使う臨時メンバーシップ受付用のノートPC（約200台）の準備にも使い回した。1台あたり約10分かかっていた設定が1分以下になり、複数のUSBで同時に進めることで、全体ではさらに何倍も効率化できた。</p>
         </div>
         <p class="note">詳細は職務経歴書に記載しています。</p>
       </div>
@@ -507,7 +535,7 @@
     <section id="works" aria-labelledby="works-h">
       <p class="chapter latin">5　Works &amp; Gap Bridging</p>
       <h2 id="works-h">実績・作品紹介</h2>
-      <p class="lead">既存製品の境界に残る「仕様の隙間」を、どの構成で、何で埋めたか。各事例の右側に、根拠となる職務経歴と公開リポジトリを並べています。</p>
+      <p class="lead">既存製品の境界に残る「仕様の隙間」を、どの構成で、何で埋めたか。導入して終わりにせず、運用で見つけた課題をどう改善したかまでを示します。各事例の右側に、根拠となる職務経歴と公開リポジトリを並べています。</p>
 
       <div class="process" aria-labelledby="proc-h">
         <h3 id="proc-h">開発の進め方</h3>
@@ -610,6 +638,7 @@
               <li><span class="y">2016–2017</span><span>Nessus・Tripwire による脆弱性検出サーバーの構築・運用、週次の集計・分析ツール</span></li>
               <li><span class="y">2018</span><span>日次CSVをGCP上で集計し、週次レポートを自動配信（PM）</span></li>
               <li><span class="y">2019–2020</span><span>PC 1,500台・サーバー50台・ネットワーク機器340台のパッチ検知と適用（リーダー）</span></li>
+              <li><span class="y">構成変更</span><span>1,500台超の端末へ、事前検証・段階展開・実行ログの日次集計で展開。1晩で約8割、約1週間で全台</span></li>
               <li><span class="y">2021–2022</span><span>MECM 導入で全端末の Windows Update を定期化</span></li>
             </ul>
             <h4>公開リポジトリ</h4>
