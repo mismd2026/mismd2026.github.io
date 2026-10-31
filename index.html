@@ -135,8 +135,9 @@
   .cycle li .ph { display: inline-block; margin-bottom: 6px; }
   .cycle li span { display: block; }
   .cycle li + li::before { content: "→"; position: absolute; left: -10px; top: 10px; transform: translateX(-50%); color: var(--slate); font-size: 13px; }
+  .cycle.cycle-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .cycle-box .map { margin: 10px 0 0; font-size: 13px; color: var(--slate); }
-  @media (max-width: 720px) { .cycle { grid-template-columns: 1fr; } .cycle li + li::before { content: "↓"; left: 50%; top: -12px; } }
+  @media (max-width: 720px) { .cycle, .cycle.cycle-2 { grid-template-columns: 1fr; } .cycle li + li::before { content: "↓"; left: 50%; top: -12px; } }
   .history .note { font-size: 13px; color: var(--slate); margin: 10px 0 0; }
 
   /* 4. Skills */
@@ -449,6 +450,15 @@
             <li><b class="ph ph-kz">改善</b><span>失敗に見えた端末の多くは、変更自体は成功しており、原因は結果を報告する仕組みの側にあった。展開そのものより、結果を正しく測る仕組みが要になると学び、この「検証 → 段階展開 → 日次集計」の流れを以降の変更にも使った</span></li>
           </ol>
           <p class="map">DevOps・SRE の言葉では：事前検証・カナリア展開 / 段階的ロールアウト / 無停止での変更適用 / 展開結果の監視 / ロールバック</p>
+        </div>
+        <div class="cycle-box">
+          <h4>全サーバーの更新・パッチ適用（変更管理）</h4>
+          <p class="sub">すべてのサーバーで更新・パッチ適用を担当。端末のような一括適用ではなく、サーバーごとに個別に対応することが多かった。</p>
+          <ol class="cycle cycle-2">
+            <li><b class="ph ph-in">導入</b><span>すべてのサーバーを各種の監視サーバーにつなぎ、適用すべき更新やパッチがあればレポートで上がってくる仕組みにした</span></li>
+            <li><b class="ph ph-ops">運用</b><span>レポートをもとにサーバーごとに適用。再起動を伴う場合は、関連部署への通知と作業スケジュールの共有を行い、必要に応じてベンダーを手配し、事前の打ち合わせを設けてから実施した</span></li>
+          </ol>
+          <p class="map">DevOps・SRE の言葉では：更新の検知と通知 / 変更管理 / メンテナンス時間の調整 / 関係者・ベンダーとの合意形成</p>
         </div>
         <div class="cycle-box">
           <h4>Windows XP・Me から 7 への移行と、PC設定バッチ</h4>
