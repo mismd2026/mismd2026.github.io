@@ -396,7 +396,9 @@
               <tr><td>Entra ID 移行の方式検討：現行 AD 2系統（計6台）のレプリケーション・時刻同期の不全を特定。降格が不完全な旧 DC の DNS 残存が発端と分析し、移行前の AD 整理とセキュリティ設計の見直しを提言</td><td class="role">方式検討／課題分析</td><td class="case"><a href="#case-1">①</a> <a href="#case-3">③</a></td></tr>
               <tr><td><b class="ph ph-kz">改善</b>障害点だったプロキシを移設、本社 LAN を根元から再敷設し無線化</td><td class="role">設計・導入</td><td class="case"><a href="#case-1">①</a></td></tr>
               <tr><td><b class="ph ph-kz">改善</b>ネットワーク障害の解消をチームのネットワークエンジニアに任せ、作業に集中できるよう依頼の流れを整理。自身はベンダーや他部署との窓口となり、回線刷新の段取り以外の調整を担当</td><td class="role">チームマネジメント</td><td class="case"><a href="#case-1">①</a></td></tr>
-              <tr><td><b class="ph ph-kz">改善</b>PCキッティング自動化（構築中）：Ansible を導入し、PCセットアップ自動化の実行環境を構築・設定</td><td class="role">自動化基盤構築</td><td class="case"><a href="#case-1">①</a> <a href="#case-2">②</a></td></tr>
+              <tr><td><b class="ph ph-kz">改善</b>PCキッティング自動化（構築中）：Ansible サーバーを構築し、PCセットアップ自動化の実行環境を設定</td><td class="role">自動化基盤構築</td><td class="case"><a href="#case-1">①</a> <a href="#case-2">②</a></td></tr>
+              <tr><td><b class="ph ph-in">導入</b>グループ外の企業にも提供している業務ツールのサーバーを、リプレイスに合わせてほぼ一から構築し直し。Zabbix サーバーを構築して監視を開始</td><td class="role">設計・構築</td><td class="case"><a href="#case-1">①</a></td></tr>
+              <tr><td><b class="ph ph-kz">改善</b>メール認証（SPF・DKIM・DMARC）の設定を見直し、なりすまし対策として調整</td><td class="role">設定・調整</td><td class="case"><a href="#case-3">③</a></td></tr>
               <tr><td>電話対応の体制について、推奨構成を複数案提案（総務部門の管轄。現在検討中で、相談があれば支援する体制）</td><td class="role">提案</td><td class="case"><a href="#case-1">①</a></td></tr>
               <tr><td>IIS で公開していた HTML ベースの旧 Web サイトを WordPress へ移す計画を支援し、担当者に仕組みと使い方を指導</td><td class="role">計画支援・指導</td><td class="case"><a href="#case-1">①</a></td></tr>
             </tbody>
@@ -441,11 +443,12 @@
             <li>社内の業務は主に Google Workspace（スプレッドシート等）で運用し、Microsoft 365 は一部に限定。現場はスプレッドシートで業務が足りていた</li>
             <li>各システムの解析レポートをもとにした、脆弱性対応・障害点の解消・設定変更の日常運用</li>
             <li>入社初期（2005〜2013年）はヘルプデスクとして、PCの受発注・設定・設置、POS の障害対応・設置、ネットワーク設定のやり直し、ネットワークとサーバーのインシデント対応を担当</li>
+            <li>EDP・SFTP・ファイル・秤・AD・Zabbix などのサーバーを構築し、運用</li>
           </ul>
         </div>
         <div class="cycle-box">
           <h4>1,500台超の端末への構成変更の展開</h4>
-          <p class="sub">AS400 の移設・刷新に伴うセッション設定の張り替え、DNS の変更とキャッシュのフラッシュ、脆弱性対応のパッチ適用、業務プログラムの入れ替え（サイレントインストール）。自作バッチと配布基盤（SKYSEA・MECM・AD のグループポリシー）で、全拠点の端末に繰り返し実施した。</p>
+          <p class="sub">AS400 の移設・刷新に伴うセッション設定の張り替え、基盤サーバー移設に伴う端末・サーバーの DNS 向け先変更とキャッシュのフラッシュ、脆弱性対応のパッチ適用、セキュリティアプリの導入、権限・ini・xml 設定の配布、アプリ基盤刷新に伴う業務プログラムの入れ替え（サイレントインストール）。自作バッチと配布基盤（SKYSEA・MECM・AD のグループポリシー）で、全拠点の端末に繰り返し実施した。</p>
           <ol class="cycle">
             <li><b class="ph ph-in">導入</b><span>配布前にテストし、数台で効果を実証。利用者が気づかないまま変更だけが適用される形を基本にした。利用者の操作が必要な変更は、手順書と実施日を事前に周知し、PC入れ替えなど大きな変更と時期を合わせ、適用に失敗しても業務を続けられ、復旧もできる状態を整えてから配布した</span></li>
             <li><b class="ph ph-ops">運用</b><span>小グループごとに順に展開。各端末の実行ログをファイルサーバーに集約し、集計スクリプトで毎日の成功・失敗を報告した。1晩で約8割に適用し、残りは追加配信で解消、最後の100台前後は手作業で確認して、約1週間で全台を完了</span></li>
@@ -532,6 +535,7 @@
           <li><span class="mark exp"></span>Wireshark</li>
           <li><span class="mark exp"></span>Nessus / Tripwire</li>
           <li><span class="mark exp"></span>FireEye・FireMon・Gigamon・OpenDNS</li>
+          <li><span class="mark exp"></span>SPF・DKIM・DMARC</li>
           <li><span class="mark exp"></span>PCI DSS 監査対応</li>
           <li>情報処理安全確保支援士領域の知見</li>
         </ul></dd>
@@ -604,7 +608,8 @@
                 <li>障害点だったプロキシを移設し、ネットワークに負荷をかけずに切り替え</li>
                 <li>障害が集中していた本社の敷設LANを根元から敷設し直し、あわせて無線化</li>
                 <li>ネットワーク障害の解消はチームのネットワークエンジニアに任せ、作業に集中できるよう依頼の流れを整理。自身はベンダーや他部署との窓口となり、回線刷新の段取り以外の調整を担当</li>
-                <li>PCキッティングの自動化に着手。Ansible を導入し、PCセットアップ自動化の実行環境を構築・設定（構築中）</li>
+                <li>PCキッティングの自動化に着手。Ansible サーバーを構築し、PCセットアップ自動化の実行環境を設定（構築中）</li>
+                <li>グループ外の企業にも提供している業務ツールのサーバーを、リプレイスに合わせてほぼ一から構築し直し。Zabbix サーバーを構築して監視を開始</li>
                 <li>電話対応の体制は総務部門の管轄のため、推奨構成を複数案提案。現在検討中で、相談があれば支援する体制をとっている</li>
                 <li>移設と並行して、IIS で公開していた HTML ベースの旧 Web サイトを WordPress へ移す計画を支援。経験のなかった担当者に、仕組みと使い方を教えた</li>
               </ol></dd>
@@ -694,6 +699,7 @@
                 <li>OU・GPO の構造を標準化し、MECM エージェントや設定をポリシーで展開</li>
                 <li>Zscaler による二要素認証でリモート接続を統制</li>
                 <li>SAML 認証で各 SaaS と SSO 連携。Entra ID 移行に向け、AD 2系統の不全を分析して移行前の整理を提言（現職）</li>
+                <li>メール認証（SPF・DKIM・DMARC）の設定を見直し、なりすまし対策として調整（現職）</li>
                 <li>役割ごとの権限分離と、全操作の監査ログを持つ管理システム（公開リポジトリ）</li>
               </ul></dd>
               <dt>設計方針</dt>
