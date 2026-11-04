@@ -430,7 +430,7 @@
               <tr><td class="when">2016.04–2017.10</td><td><b class="ph ph-in">導入</b>脆弱性検出サーバー（Nessus・Tripwire、RHEL）の構築、週次レポートの集計・分析ツール作成<span class="after"><b class="ph ph-ops">運用</b>診断結果の分析と対応</span><span class="after"><b class="ph ph-kz">改善</b>2018年に、日次CSVの集計と週次レポートの配信を自動化（GCP・GAS）</span></td><td class="role">構築・運用</td><td class="tl"><span class="track" role="img" aria-label="導入 2016.04–2017.10、以降は運用を継続"><span class="ops" style="left:64.98%;right:0"></span><span class="intro" style="left:56.96%;width:8.02%"></span></span></td><td class="case"><a href="#case-2">②</a></td></tr>
               <tr><td class="when">2016.03–2016.08</td><td><b class="ph ph-in">導入</b>セキュリティ機器の導入（FireEye、Gigamon、Balabit、FireMon、OpenDNS）。本社に設置し、ログの取得範囲や、米国側からどこまで見えるかを確かめる試行運用を行った。2020年のセキュリティスイートの前身<span class="after"><b class="ph ph-ops">運用</b>検知結果の確認と機器の運用</span></td><td class="role">基本設計・導入補佐・運用</td><td class="tl"><span class="track" role="img" aria-label="導入 2016.03–2016.08、以降は運用を継続"><span class="ops" style="left:59.07%;right:0"></span><span class="intro" style="left:56.54%;width:2.53%"></span></span></td><td class="case"><a href="#case-2">②</a></td></tr>
               <tr><td class="when">2014.07–2015.08</td><td><b class="ph ph-in">導入</b>Zabbix による死活監視・ネットワーク負荷検知の構築（Linux のファイル上限と DB のテーブル記録上限を解除して構成）<span class="after"><b class="ph ph-ops">運用</b>当時の Zabbix にはハウスキープ機能がなかったため、古いデータを定期的に削除する処理を Linux 側に組み込み、DB の肥大化を防ぎながら運用</span><span class="after"><b class="ph ph-kz">改善</b>全スイッチ・全ポートのメール通知が頻発して業務に支障が出たため、通知は死活監視に絞り、ポート単位の監視は画面で確認する形に分けた</span></td><td class="role">設計・構築・運用</td><td class="tl"><span class="track" role="img" aria-label="導入 2014.07–2015.08、以降は運用を継続"><span class="ops" style="left:54.01%;right:0"></span><span class="intro" style="left:48.10%;width:5.91%"></span></span></td><td class="case"></td></tr>
-              <tr><td class="when">2005–2016</td><td><b class="ph ph-in">導入</b>社内システムの開発：業務引継ぎシステム（JSP）、<a href="https://github.com/mismd2026/po-issue-system-jsp">発注（PO 発行）システム</a>（Servlet / JSP で再現し公開）、機器管理台帳・資産登録システム（SKYSEA 導入前）、チケット管理・価格比較サイト（GAS・PHP）。Google Workspace 導入時（2010年頃）に全社向けの社内 Web ページを作成し、各部署がルールや決め事を発信できるようにした<span class="after"><b class="ph ph-ops">運用</b>各システムの保守・改修</span><span class="after"><b class="ph ph-kz">改善</b>利用者の要望から GAS で仕組みを作った。受付向けに全会議室の予約一覧を印刷用に自動生成（毎日掲示。ダブルブッキングで止まったときの保守も担当）。ガソリンスタンドのプリペイドカード販売では、目視で番号を確認して手入力していた作業を、ハンドスキャナで読み取った番号を記入漏れ・表記ゆれなくスプレッドシートに登録するスクリプトに置き換え、現場の手間を減らした</span></td><td class="role">設計・開発・運用</td><td class="tl"><span class="track" role="img" aria-label="導入 2005–2016、以降は運用を継続"><span class="ops" style="left:58.23%;right:0"></span><span class="intro" style="left:0.00%;width:58.23%"></span></span></td><td class="case"><a href="#case-2">②</a> <a href="#case-4">④</a></td></tr>
+              <tr><td class="when">2005–2016</td><td><b class="ph ph-in">導入</b>社内システムの開発：業務引継ぎシステム（JSP）、<a href="https://github.com/mismd2026/po-issue-system-jsp">発注（PO 発行）システム</a>（JSP で開発し、のちに C#.NET で刷新。JSP 版を再現して公開）、機器管理台帳・資産登録システム（SKYSEA 導入前）、チケット管理・価格比較サイト（GAS・PHP）。Google Workspace 導入時（2010年頃）に全社向けの社内 Web ページを作成し、各部署がルールや決め事を発信できるようにした<span class="after"><b class="ph ph-ops">運用</b>各システムの保守・改修</span><span class="after"><b class="ph ph-kz">改善</b>利用者の要望から GAS で仕組みを作った。受付向けに全会議室の予約一覧を印刷用に自動生成（毎日掲示。ダブルブッキングで止まったときの保守も担当）。ガソリンスタンドのプリペイドカード販売では、目視で番号を確認して手入力していた作業を、ハンドスキャナで読み取った番号を記入漏れ・表記ゆれなくスプレッドシートに登録するスクリプトに置き換え、現場の手間を減らした</span></td><td class="role">設計・開発・運用</td><td class="tl"><span class="track" role="img" aria-label="導入 2005–2016、以降は運用を継続"><span class="ops" style="left:58.23%;right:0"></span><span class="intro" style="left:0.00%;width:58.23%"></span></span></td><td class="case"><a href="#case-2">②</a> <a href="#case-4">④</a></td></tr>
             </tbody>
           </table>
         </div>
@@ -543,6 +543,7 @@
           <li><span class="mark exp"></span><span class="mark work"></span>Google Apps Script</li>
           <li><span class="mark exp"></span><span class="mark work"></span>JavaScript</li>
           <li><span class="mark exp"></span>PHP</li>
+          <li><span class="mark exp"></span>C# / .NET（Visual Studio）</li>
           <li><span class="mark exp"></span><span class="mark work"></span>Java / JSP / Servlet</li>
           <li><span class="mark exp"></span><span class="mark work"></span>SQL（MySQL・PostgreSQL・SQLite）</li>
           <li><span class="mark work"></span>TypeScript / React</li>
@@ -737,7 +738,7 @@
                 <li>音声認識・ローカルLLM・音声合成をつなぎ、FAQ回答・AI回答・有人引き継ぎを振り分けるコールセンター基盤。契約企業向けの顧客ポータル・CMS と事業者向けの運用コンソールも開発し、インフラは Terraform で定義</li>
                 <li>前職で GAS で開発・運用していた PC 貸し出し管理を再現し、TypeScript / React 版も作成して GitHub Pages で公開</li>
                 <li>話題調査から台本・ナレーション・編集・投稿までを1コマンドで実行する動画制作パイプライン</li>
-                <li>前職で作った発注（PO 発行）システムを、当時と同じ Servlet / JSP 構成で再現。申請・二段階承認・PO番号の採番・注文書の印刷・検収・CSV出力まで</li>
+                <li>前職で最初に JSP で作った発注（PO 発行）システム（のちに C#.NET で刷新）を、当時と同じ Servlet / JSP 構成で再現。申請・二段階承認・PO番号の採番・注文書の印刷・検収・CSV出力まで</li>
               </ul></dd>
             </dl>
             <p class="stack">Google AI Studio・React / TypeScript・Python・FastAPI・Ollama / Qwen・VOICEVOX・ffmpeg・Kubernetes / Helm（チャート）・Terraform・Cloud Run・Java（Servlet / JSP / JDBC）</p>
@@ -754,7 +755,7 @@
             </ul>
             <h4>職務経歴</h4>
             <ul>
-              <li><span class="y">2005–2016</span><span>業務引継ぎ（JSP）、発注、資産登録、チケット管理、価格比較、全社向け社内 Web ページを設計から運用まで担当</span></li>
+              <li><span class="y">2005–2016</span><span>業務引継ぎ（JSP）、発注（JSP → C#.NET で刷新）、資産登録、チケット管理、価格比較、全社向け社内 Web ページを設計から運用まで担当</span></li>
               <li><span class="y">2022–2023頃</span><span>PC 貸し出し管理システム（GAS）を開発し、運用</span></li>
             </ul>
           </aside>
